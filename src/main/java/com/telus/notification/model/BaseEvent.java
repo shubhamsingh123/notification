@@ -8,6 +8,16 @@ public class BaseEvent {
     private Instant timestamp;
     private Map<String, Object> data;
 
+    /**
+     * For UserRegisteredEvent, the data map should contain:
+     * - userId: String
+     * - username: String
+     * - email: String
+     * - role: String
+     * - status: String
+     * - rmgEmail: String
+     */
+
     // Getters and setters
     public String getEventType() {
         return eventType;

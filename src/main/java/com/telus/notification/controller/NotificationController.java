@@ -42,9 +42,12 @@ public class NotificationController {
     private NotificationTemplateService templateService;
 
     @GetMapping
-    public ResponseEntity<Map<String, Object>> getUserNotifications() {
+    public ResponseEntity<Map<String, Object>> getUserNotifications(@RequestParam(required = false) String userId) {
         try {
-            String userId = SecurityUtils.getCurrentUserId();
+            // If no userId provided, fall back to SecurityUtils
+            if (userId == null) {
+                userId = SecurityUtils.getCurrentUserId();
+            }
             logger.info("Fetching notifications for user: {}", userId);
             List<Notification> notifications = notificationRepository.findByExternalUserId(userId);
             long unreadCount = notificationRepository.countUnreadByExternalUserId(userId);
@@ -157,15 +160,19 @@ public class NotificationController {
         }
     }
 
-    @PostMapping("/events")
-    public ResponseEntity<String> handleEvent(@RequestBody BaseEvent event) {
-        try {
-            logger.info("Received event of type: {}", event.getEventType());
-            eventProcessor.processEvent(event);
-            return ResponseEntity.ok("Event processed successfully");
-        } catch (Exception e) {
-            logger.error("Error processing event: {}", e.getMessage(), e);
-            return ResponseEntity.internalServerError().body("Error processing event: " + e.getMessage());
+@PostMapping("/events")
+public ResponseEntity<String> handleEvent(@RequestBody BaseEvent event) {
+    try {
+        if (!"UserRegistered".equals(event.getEventType())) {
+            logger.warn("Received unsupported event type: {}", event.getEventType());
+            return ResponseEntity.badRequest().body("Unsupported event type");
         }
+        logger.info("Received UserRegistered event");
+        eventProcessor.processEvent(event);
+        return ResponseEntity.ok("UserRegistered event processed successfully");
+    } catch (Exception e) {
+        logger.error("Error processing UserRegistered event: {}", e.getMessage(), e);
+        return ResponseEntity.internalServerError().body("Error processing UserRegistered event: " + e.getMessage());
     }
+}
 }

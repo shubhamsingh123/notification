@@ -1,5 +1,6 @@
 package com.telus.notification.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.telus.notification.model.BaseEvent;
 import com.telus.notification.entity.Notification;
 import com.telus.notification.repository.NotificationRepository;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.integration.annotation.ServiceActivator;
+import org.springframework.messaging.Message;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -26,6 +29,33 @@ public class NotificationEventProcessor {
     @Autowired
     private NotificationRepository notificationRepository;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @ServiceActivator(inputChannel = "pubsubInputChannel")
+    public void handleMessage(Message<?> message) {
+        String payload;
+        Object rawPayload = message.getPayload();
+        
+        if (rawPayload instanceof byte[]) {
+            payload = new String((byte[]) rawPayload);
+        } else if (rawPayload instanceof String) {
+            payload = (String) rawPayload;
+        } else {
+            logger.error("Unexpected payload type: {}", rawPayload.getClass());
+            return;
+        }
+        
+        logger.info("Message received from PubSub: {}", payload);
+        
+        try {
+            BaseEvent event = objectMapper.readValue(payload, BaseEvent.class);
+            processEvent(event);
+        } catch (Exception e) {
+            logger.error("Error processing PubSub message", e);
+        }
+    }
+
     public void processEvent(BaseEvent event) {
         if (event == null) {
             throw new NotificationException("Event cannot be null");
@@ -43,12 +73,6 @@ public class NotificationEventProcessor {
             case "UserRegistered":
                 handleUserRegistered(event);
                 break;
-            case "AccountApproved":
-                handleAccountApproved(event);
-                break;
-            case "NOTIFICATION_CREATED":
-                handleNotificationCreated(event);
-                break;
             default:
                 logger.warn("Unhandled event type: {}", event.getEventType());
         }
@@ -56,47 +80,38 @@ public class NotificationEventProcessor {
 
     private void handleUserRegistered(BaseEvent event) {
         var data = event.getData();
+        String userId = getRequiredField(data, "userId");
         String username = getRequiredField(data, "username");
         String email = getRequiredField(data, "email");
         String role = getRequiredField(data, "role");
         String status = getRequiredField(data, "status");
+        String rmgEmail = getOptionalField(data, "rmgEmail", "shubham16cse06@gmail.com");
 
-        // TODO: Generate notification using template
         String message = String.format(
-            "Welcome %s! Your account has been created with role %s. Current status: %s",
-            username, role, status
+            "New user %s has registered with role %s. Email: %s, Status: %s",
+            username, role, email, status
         );
         
         logger.info("Generated notification for user registration: {}", message);
         emailService.sendSimpleMessage(
-            email,
-            "Welcome to Our Service",
+            rmgEmail,
+            "New User Registration",
             message
         );
 
-        saveNotification(username, "UserRegistered", message);
+        saveNotification(userId, "UserRegistered", message);
     }
 
-    private void handleAccountApproved(BaseEvent event) {
-        var data = event.getData();
-        String username = getRequiredField(data, "username");
-        String email = getRequiredField(data, "email");
-        String approvedBy = getRequiredField(data, "approvedBy");
-
-        // TODO: Generate notification using template
-        String message = String.format(
-            "Hello %s, Your account has been approved by %s. You can now access all features of the system.",
-            username, approvedBy
-        );
-        
-        logger.info("Generated notification for account approval: {}", message);
-        emailService.sendSimpleMessage(
-            email,
-            "Account Approved",
-            message
-        );
-
-        saveNotification(username, "AccountApproved", message);
+    private String getOptionalField(Map<String, Object> data, String fieldName, String defaultValue) {
+        Object value = data.get(fieldName);
+        if (value == null) {
+            return defaultValue;
+        }
+        if (!(value instanceof String)) {
+            return defaultValue;
+        }
+        String stringValue = (String) value;
+        return stringValue.trim().isEmpty() ? defaultValue : stringValue;
     }
 
     private void saveNotification(String externalUserId, String type, String message) {
@@ -110,16 +125,6 @@ public class NotificationEventProcessor {
 
         notificationRepository.save(notification);
         logger.info("Notification saved to database for user: {}", externalUserId);
-    }
-
-    private void handleNotificationCreated(BaseEvent event) {
-        var data = event.getData();
-        String externalUserId = getRequiredField(data, "externalUserId");
-        String message = getRequiredField(data, "message");
-        String type = getRequiredField(data, "type");
-
-        saveNotification(externalUserId, type, message);
-        logger.info("Created notification for user: {}", externalUserId);
     }
 
     private String getRequiredField(Map<String, Object> data, String fieldName) {
