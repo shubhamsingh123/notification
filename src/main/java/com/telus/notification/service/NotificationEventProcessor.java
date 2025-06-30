@@ -2,6 +2,7 @@ package com.telus.notification.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.telus.notification.model.BaseEvent;
+import com.telus.notification.model.UserRegistrationEmailModel;
 import com.telus.notification.entity.Notification;
 import com.telus.notification.repository.NotificationRepository;
 import com.telus.notification.exception.NotificationException;
@@ -86,19 +87,25 @@ public class NotificationEventProcessor {
         String role = getRequiredField(data, "role");
         String status = getRequiredField(data, "status");
         String rmgEmail = getOptionalField(data, "rmgEmail", "shubham16cse06@gmail.com");
+        String managerEmail = getOptionalField(data, "managerEmail", email); // Default to user's email if not provided
+        String loginUrl = getOptionalField(data, "loginUrl", "https://telus.com/login"); // Default login URL
+
+        // Create email model
+        UserRegistrationEmailModel emailModel = new UserRegistrationEmailModel(
+            username,
+            email,
+            managerEmail,
+            LocalDateTime.now(),
+            loginUrl
+        );
+        
+        logger.info("Sending registration email notification for user: {}", username);
+        emailService.sendUserRegistrationEmail(emailModel, rmgEmail);
 
         String message = String.format(
             "New user %s has registered with role %s. Email: %s, Status: %s",
             username, role, email, status
         );
-        
-        logger.info("Generated notification for user registration: {}", message);
-        emailService.sendSimpleMessage(
-            rmgEmail,
-            "New User Registration",
-            message
-        );
-
         saveNotification(userId, "UserRegistered", message);
     }
 
