@@ -1,14 +1,13 @@
 package com.telus.notification.service;
 
 import com.telus.notification.model.UserRegistrationEmailModel;
+import com.telus.notification.entity.NotificationTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -27,7 +26,7 @@ public class EmailServiceImpl implements EmailService {
     private JavaMailSender mailSender;
 
     @Autowired
-    private TemplateEngine templateEngine;
+    private NotificationTemplateService templateService;
 
     @Override
     public void sendSimpleMessage(String to, String subject, String text) {
@@ -56,16 +55,22 @@ public class EmailServiceImpl implements EmailService {
             helper.setCc(new String[]{model.getUserEmail(), model.getManagerEmail()});
             helper.setSubject("New User Registration - TELUS");
 
-            Context context = new Context();
+            // Get template from database
+            NotificationTemplate template = templateService.getTemplateByEventType("USER_REGISTRATION");
+            if (template == null) {
+                throw new RuntimeException("User registration template not found in database");
+            }
+
+            // Prepare variables for template
             Map<String, Object> variables = new HashMap<>();
             variables.put("userName", model.getUserName());
-            variables.put("userEmail", model.getUserEmail());
+            variables.put("userId", model.getUserEmail()); // Template uses userId for email
             variables.put("registrationDate", model.getRegistrationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             variables.put("loginUrl", model.getLoginUrl());
             variables.put("currentYear", java.time.Year.now().getValue());
-            context.setVariables(variables);
 
-            String htmlContent = templateEngine.process("user-registration-template", context);
+            // Process template with variables
+            String htmlContent = templateService.processTemplate(template.getBodyTemplate(), variables);
             helper.setText(htmlContent, true);
 
             mailSender.send(message);
