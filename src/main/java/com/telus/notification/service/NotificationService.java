@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface NotificationService {
     List<Notification> getUnreadNotificationsByExternalUserId(String externalUserId);
+    void markNotificationAsRead(Integer notificationId);
 }

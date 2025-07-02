@@ -5,10 +5,7 @@ import com.telus.notification.entity.Notification;
 import com.telus.notification.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,9 +20,23 @@ public class NotificationController {
         this.notificationService = notificationService;
     }
 
-    @GetMapping("/unread/{externalUserId}")
-    public ResponseEntity<ApiResponse> getUnreadNotifications(@PathVariable String externalUserId) {
-        List<Notification> unreadNotifications = notificationService.getUnreadNotificationsByExternalUserId(externalUserId);
-        return ResponseEntity.ok(ApiResponse.success(unreadNotifications));
+     @GetMapping("/unread/{externalUserId}")
+    public ResponseEntity<ApiResponse<List<Notification>>> getUnreadNotifications(@PathVariable String externalUserId) {
+        try {
+            List<Notification> unreadNotifications = notificationService.getUnreadNotificationsByExternalUserId(externalUserId);
+            return ResponseEntity.ok(new ApiResponse<>(true, unreadNotifications, null));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(new ApiResponse<>(false, null, e.getMessage()));
+        }
+    }
+
+     @PutMapping("/{notificationId}/mark-as-read")
+    public ResponseEntity<ApiResponse<String>> markNotificationAsRead(@PathVariable Integer notificationId) {
+        try {
+            notificationService.markNotificationAsRead(notificationId);
+            return ResponseEntity.ok(new ApiResponse<>(true, "Notification marked as read successfully", null));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(new ApiResponse<>(false, null, e.getMessage()));
+        }
     }
 }
