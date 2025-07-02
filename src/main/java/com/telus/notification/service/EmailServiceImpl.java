@@ -57,7 +57,7 @@ public class EmailServiceImpl implements EmailService {
             helper.setSubject("New User Registration - TELUS");
 
             // Get template from database
-            NotificationTemplate template = templateService.getTemplateByEventType("UserRegisterEvent");
+            NotificationTemplate template = templateService.getTemplateByEventType("UserRegistered");
             if (template == null) {
                 throw new RuntimeException("User registration template not found in database");
             }

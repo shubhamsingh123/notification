@@ -1,11 +1,11 @@
 package com.telus.notification.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.telus.notification.entity.NotificationTemplate;
 import com.telus.notification.repository.NotificationTemplateRepository;
 import com.telus.notification.service.NotificationTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.slf4j.Logger;
@@ -21,11 +21,15 @@ public class NotificationTemplateServiceImpl implements NotificationTemplateServ
     private static final Logger logger = LoggerFactory.getLogger(NotificationTemplateServiceImpl.class);
     private final NotificationTemplateRepository notificationTemplateRepository;
     private final TemplateEngine templateEngine;
+    private final ObjectMapper objectMapper;
 
     @Autowired
-    public NotificationTemplateServiceImpl(NotificationTemplateRepository notificationTemplateRepository, TemplateEngine templateEngine) {
+    public NotificationTemplateServiceImpl(NotificationTemplateRepository notificationTemplateRepository, 
+                                         TemplateEngine templateEngine,
+                                         ObjectMapper objectMapper) {
         this.notificationTemplateRepository = notificationTemplateRepository;
         this.templateEngine = templateEngine;
+        this.objectMapper = objectMapper;
     }
 
     @Override
@@ -95,9 +99,9 @@ public class NotificationTemplateServiceImpl implements NotificationTemplateServ
     }
 
     @Override
-    public NotificationTemplate updateTemplateBody(String eventType, String newTemplate) {
+    public NotificationTemplate updateTemplateBody(String eventType, Map<String, Object> newData) {
         logger.info("Updating template body for event type: {}", eventType);
-        logger.info("New template content: '{}'", newTemplate);
+        logger.info("New template data: '{}'", newData);
         
         NotificationTemplate template = getTemplateByEventType(eventType);
         if (template == null) {
@@ -105,14 +109,21 @@ public class NotificationTemplateServiceImpl implements NotificationTemplateServ
             throw new RuntimeException("Template not found for event type: " + eventType);
         }
         
-        template.setBodyTemplate(newTemplate);
-        template.setUpdatedAt(LocalDateTime.now());
-        
-        NotificationTemplate updatedTemplate = notificationTemplateRepository.save(template);
-        logger.info("Template updated successfully for event type: {}", eventType);
-        logTemplateDetails(updatedTemplate);
-        
-        return updatedTemplate;
+        try {
+            String newTemplateBody = objectMapper.writeValueAsString(newData);
+            template.setBodyTemplate(newTemplateBody);
+            template.setUpdatedAt(LocalDateTime.now());
+            template.setUpdatedBy("system");
+            
+            NotificationTemplate updatedTemplate = notificationTemplateRepository.save(template);
+            logger.info("Template updated successfully for event type: {}", eventType);
+            logTemplateDetails(updatedTemplate);
+            
+            return updatedTemplate;
+        } catch (Exception e) {
+            logger.error("Error updating template for event type: {}", eventType, e);
+            throw new RuntimeException("Error updating template: " + e.getMessage());
+        }
     }
 
     @Override

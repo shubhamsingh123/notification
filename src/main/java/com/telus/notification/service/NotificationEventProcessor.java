@@ -94,7 +94,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
         logger.debug("Event data: {}", event.getData());
         
         switch(event.getEventType()) {
-            case "UserRegisterEvent":
+            case "UserRegistered":
                 handleUserRegisterEvent(event);
                 break;
             default:
@@ -104,7 +104,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
 
     private void handleUserRegisterEvent(BaseEvent event) {
         var data = event.getData();
-        logger.info("Processing UserRegisterEvent event with data: {}", data);
+        logger.info("Processing UserRegistered event with data: {}", data);
         
         String userId = getRequiredField(data, "userId");
         String username = getRequiredField(data, "username");
@@ -118,6 +118,21 @@ private NotificationTemplateRepository notificationTemplateRepository;
         logger.info("Extracted fields from event - username: {}, role: {}, email: {}, status: {}", 
             username, role, email, status);
 
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("userName", username);
+        variables.put("userId", email);
+        variables.put("loginUrl", loginUrl);
+        variables.put("currentYear", Year.now().toString());
+        
+        NotificationTemplate template = templateService.getTemplateByEventType(event.getEventType());
+        if (template == null) {
+            logger.error("No template found for event type: {}", event.getEventType());
+            throw new NotificationException("Template not found for event type: " + event.getEventType());
+        }
+        
+        String message = templateService.processTemplate(template.getBodyTemplate(), variables);
+        logger.info("Processed template message: '{}'", message);
+
         // Create email model
         UserRegistrationEmailModel emailModel = new UserRegistrationEmailModel(
             username,
@@ -127,53 +142,20 @@ private NotificationTemplateRepository notificationTemplateRepository;
             loginUrl
         );
         
-        // Save or update the notification template
-        String templateBody = String.format(
-        	    "Welcome %s! You have been registered with role %s. Your email is %s and your status is %s.",
-        	    username, role, email, status
-        	);
-        saveOrUpdateNotificationTemplate(event.getEventType(), "User Registration", templateBody);
-        
-        logger.info("Processing notification for user: {}", username);
-
         logger.info("Sending registration email notification for user: {}", username);
         emailService.sendUserRegistrationEmail(emailModel, rmgEmail);
 
-        // Process the template
-        // Map<String, Object> variables = new HashMap<>();
-        // variables.put("username", username);
-        // variables.put("role", role);
-        // variables.put("email", email);
-        // variables.put("status", status);
-
-        Map<String, Object> variables = new HashMap<>();
-variables.put("userName", username);             // For ${userName}
-variables.put("userId", email);                  // For ${userId} (used in email text)
-variables.put("loginUrl", loginUrl);             // For ${loginUrl}
-variables.put("currentYear", Year.now().toString()); // For ${currentYear}
-        
-        NotificationTemplate template = templateService.getTemplateByEventType(event.getEventType());
-        String message = templateService.processTemplate(template.getBodyTemplate(), variables);
-        logger.info("Processed template message: '{}'", message);
-
-        saveNotification(userId, "UserRegisterEvent", message);
+        saveNotification(userId, "UserRegistered", message);
     }
 
-    private void saveOrUpdateNotificationTemplate(String eventType, String name, String bodyTemplate) {
-        NotificationTemplate template = templateService.getTemplateByEventType(eventType);
-        if (template == null) {
-            template = new NotificationTemplate();
-            template.setEventType(eventType);
-            template.setTemplateId(null); // Let the database auto-generate the ID
-            template.setName(name);
-            template.setSubjectTmp("New User Registration");
-            template.setBodyTemplate(getDefaultHTMLTemplate());
-            template.setCreatedAt(LocalDateTime.now());
-            template.setUpdatedAt(LocalDateTime.now());
-            template.setCreatedBy("system");
-            template.setUpdatedBy("system");
-            notificationTemplateRepository.save(template);
-            logger.info("Created new notification template for event type: {}", eventType);
+    private void updateNotificationTemplate(String eventType, Map<String, Object> data) {
+        try {
+            NotificationTemplate updatedTemplate = templateService.updateTemplateBody(eventType, data);
+            logger.info("Updated notification template for event type: {}", eventType);
+            logger.debug("Updated template: {}", updatedTemplate);
+        } catch (RuntimeException e) {
+            logger.error("Error updating template for event type: {}", eventType, e);
+            throw new NotificationException("Error updating template: " + e.getMessage());
         }
     }
 

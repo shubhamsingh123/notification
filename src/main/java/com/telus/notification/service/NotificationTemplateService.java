@@ -28,8 +28,8 @@ public interface NotificationTemplateService {
     /**
      * Update the body template for a specific event type
      * @param eventType the type of event
-     * @param newTemplate the new template content
+     * @param newData the new template data as a Map
      * @return the updated template
      */
-    NotificationTemplate updateTemplateBody(String eventType, String newTemplate);
+    NotificationTemplate updateTemplateBody(String eventType, Map<String, Object> newData);
 }

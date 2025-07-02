@@ -282,14 +282,26 @@ VALUES ('Email Notifications', 'email', TRUE, '{"smtp_server": "smtp.telus.com",
 -- Sample data for NOTIFICATION_TEMPLATES
 INSERT INTO NOTIFICATION_TEMPLATES (name, subject_tmp, body_template, event_type, created_by, updated_by)
 VALUES (
-  'New User Registration', 
-  'New User Registration Requires Approval', 
-  '<!DOCTYPE html>\n<html xmlns:th=\"http://www.thymeleaf.org\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Welcome to TELUS</title>\n    <style>\n        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333333; margin: 0; padding: 0; }\n        .container { max-width: 600px; margin: 0 auto; padding: 20px; }\n        .header { background-color: #4B286D; padding: 20px; text-align: center; }\n        .header img { max-width: 150px; }\n        .content { padding: 20px; background-color: #ffffff; }\n        .footer { background-color: #f4f4f4; padding: 20px; text-align: center; font-size: 12px; }\n        .button { display: inline-block; padding: 10px 20px; background-color: #66CC00; color: #ffffff; text-decoration: none; border-radius: 5px; margin: 20px 0; }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"header\">\n            <img src=\"cid:telus-logo\" alt=\"TELUS Logo\">\n        </div>\n        <div class=\"content\">\n            <h2>Welcome to TELUS!</h2>\n            <p>Dear ${userName},</p>\n            <p>Thank you for registering with TELUS. We''re excited to have you on board!</p>\n            <p>Your account has been successfully created with the following details:</p>\n            <ul>\n                <li>Username: ${userName}</li>\n                <li>Email: ${userId}</li>\n            </ul>\n            <p>What''s Next?</p>\n            <ul>\n                <li>Complete your profile</li>\n                <li>Explore our services</li>\n                <li>Contact support if you need assistance</li>\n            </ul>\n            <a href=\"${loginUrl}\" class=\"button\">Login to Your Account</a>\n            <p>If you have any questions or need assistance, please don''t hesitate to contact our support team.</p>\n            <p>Best regards,<br>The TELUS Team</p>\n        </div>\n        <div class=\"footer\">\n            <p>This email was sent to ${userId}. Please do not reply to this email.</p>\n            <p>&copy; ${currentYear} TELUS. All rights reserved.</p>\n        </div>\n    </div>\n</body>\n</html>', 
-  'UserRegisterEvent', 
-  'system', 
+  'User Registration Template',
+  'Welcome to TELUS',
+  '<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to TELUS</title>
+</head>
+<body>
+    <h1>Welcome to TELUS, ${userName}!</h1>
+    <p>Your account has been successfully created with the email: ${userId}</p>
+    <p>Please click <a href="${loginUrl}">here</a> to log in to your account.</p>
+    <p>If you have any questions, please don''t hesitate to contact us.</p>
+    <p>Best regards,<br>The TELUS Team</p>
+</body>
+</html>',
+  'UserRegistered',
+  'system',
   'system'
 );
 
 -- Sample data for NOTIFICATION_PREFERENCES
 INSERT INTO NOTIFICATION_PREFERENCES (external_user_id, channel_id, event_type, is_enabled, created_by, updated_by)
-VALUES ('shubham16cse06@gmail.com', 1, 'UserRegisterEvent', TRUE, 'system', 'system');
+VALUES ('shubham16cse06@gmail.com', 1, 'UserRegistered', TRUE, 'system', 'system');
