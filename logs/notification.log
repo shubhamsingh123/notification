@@ -21111,3 +21111,813 @@ java.io.EOFException: null
 2025-07-02 18:05:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
 2025-07-02 18:05:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
 2025-07-02 18:05:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:05:53 [Catalina-utility-1] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1751459753188 sessioncount 0
+2025-07-02 18:05:53 [Catalina-utility-1] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 0 expired sessions: 0
+2025-07-02 18:05:56 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=23 headers=GrpcHttp2ResponseHeaders[:status: 200, content-type: application/grpc, date: Wed, 02 Jul 2025 12:35:56 GMT, alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000] padding=0 endStream=false
+2025-07-02 18:05:56 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=23 headers=GrpcHttp2ResponseHeaders[grpc-status: 14, grpc-message: The service was unable to fulfill your request. Please try again. [code=8a75]] padding=0 endStream=true
+2025-07-02 18:05:56 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND RST_STREAM: streamId=23 errorCode=0
+2025-07-02 18:05:56 [Subscriber-SE-1-4] DEBUG c.g.c.p.v.StreamingSubscriberConnection - stream closed with retryable exception; will reconnect
+com.google.api.gax.rpc.UnavailableException: io.grpc.StatusRuntimeException: UNAVAILABLE: The service was unable to fulfill your request. Please try again. [code=8a75]
+	at com.google.api.gax.rpc.ApiExceptionFactory.createException(ApiExceptionFactory.java:112)
+	at com.google.api.gax.rpc.ApiExceptionFactory.createException(ApiExceptionFactory.java:41)
+	at com.google.api.gax.grpc.GrpcApiExceptionFactory.create(GrpcApiExceptionFactory.java:86)
+	at com.google.api.gax.grpc.GrpcApiExceptionFactory.create(GrpcApiExceptionFactory.java:66)
+	at com.google.api.gax.grpc.ExceptionResponseObserver.onErrorImpl(ExceptionResponseObserver.java:82)
+	at com.google.api.gax.rpc.StateCheckingResponseObserver.onError(StateCheckingResponseObserver.java:84)
+	at com.google.api.gax.grpc.GrpcDirectStreamController$ResponseObserverAdapter.onClose(GrpcDirectStreamController.java:148)
+	at io.grpc.PartialForwardingClientCallListener.onClose(PartialForwardingClientCallListener.java:39)
+	at io.grpc.ForwardingClientCallListener.onClose(ForwardingClientCallListener.java:23)
+	at io.grpc.ForwardingClientCallListener$SimpleForwardingClientCallListener.onClose(ForwardingClientCallListener.java:40)
+	at com.google.api.gax.grpc.ChannelPool$ReleasingClientCall$1.onClose(ChannelPool.java:570)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:574)
+	at io.grpc.internal.ClientCallImpl.access$300(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:742)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:723)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: io.grpc.StatusRuntimeException: UNAVAILABLE: The service was unable to fulfill your request. Please try again. [code=8a75]
+	at io.grpc.Status.asRuntimeException(Status.java:537)
+	... 17 common frames omitted
+2025-07-02 18:05:56 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND PING: ack=false bytes=82
+2025-07-02 18:05:56 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND PING: ack=true bytes=82
+2025-07-02 18:05:56 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND RST_STREAM: streamId=23 errorCode=8
+2025-07-02 18:05:56 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND HEADERS: streamId=25 headers=GrpcHttp2OutboundHeaders[:authority: pubsub.googleapis.com:443, :path: /google.pubsub.v1.Subscriber/StreamingPull, :method: POST, :scheme: https, content-type: application/grpc, te: trailers, user-agent: Spring/4.8.4 spring-cloud-gcp-pubsub/4.8.4 grpc-java-netty/1.59.0, x-goog-request-params: subscription=projects/telus-koodo/subscriptions/user-register-subscription, x-goog-api-client: gl-java/21.0.4__Eclipse-Adoptium__Temurin-21.0.4-7 gapic/1.125.11 gax/2.37.0 grpc/1.59.0, grpc-accept-encoding: gzip, authorization: Bearer ya29.c.c0ASRK0GYk038h5Px4KPmnOX1BIJNM_emPyeu9_GsZELGC_kNI0Q7HOhX83f2sbjnF775EHdwNrGPpU5JSFk8qk1MVXVkh5FEwmHO_L2kTOVZIwj6e55XT6EZoBy5ajphraEux4OEuxUPIc2QkU_iY4XY94CVk8mipUey6-wriCRu9BOIf7Fe83jnqalW99GSAL1mX7ex0HCxzJjJokWgUJ2C2xW_VQp8halADSLo6wd9v95USWz1QUXANsV60HqXrlQbA3h3axrJBbgxVzDBF-OVY8aMyuTXvu491VtDzkWlhPHrdHty_LI0VTO58_RBXuWeL0H31mLYNV_Kk_SK3bFxyOZ2iChYScUe9zT4RJbpy74hGtjOC4qvpz0gL7QO-318uIPtgo5uhQdSL-MxTPO7gLQL419KfsSOddeF0a5x_U4tZb6taJ7ea1nan0gSsQF_qnJYJ3IsysS5mshe445qwl6sjsIFwZntqaUxOgsYsXjaWZfvuu8u7inebfFhvyBicfxX9Qf1kfpnZ_RV9tvuwxn8kagn6MRV32rQ68jc666Y497F83Vvrv-i7IcoWRqy613kzi5IxfzzM_uWs94brjvlR9zrtprJequUBkUW8SgdRXmaIkuO_ibtJWWvdusBt5qZi18Fa-x-h61_v2jQxpyQ2z5u8Z9XxsVI7Zqu9Xtmrj80n_XB20zYYaq8xgUB45FRfa2bWrVrns8FBSfh4pW2zal9bSrzyd5q6ZSev-V0q7grljfXxBdokerRYVIq8ddM9rdjhOvoVQSvR6a-InYSgIwr5RxzdJ8e6-WrylOUyROX48sS1S1WhOcMrXdvBY0Y1X_R8lRoIo1-JgrJfF4ymBi6m90wXkieuB1g2zu6mbh2_kVjbW9IvfeVskxe19b4_8MIXS6-ikg32kOn2xUVs1Yq5Wbzt7FXVxIURJ6hSS_qXbU7OaV6kt6bJYyZtXqa85UVniSymQQ5XMkjx59zl04fcSgY_lW56tSUsUqk3h_vk0X8] streamDependency=0 weight=16 exclusive=false padding=0 endStream=false
+2025-07-02 18:05:56 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND DATA: streamId=25 padding=0 endStream=false length=116 bytes=000000006f0a3d70726f6a656374732f74656c75732d6b6f6f646f2f737562736372697074696f6e732f757365722d72656769737465722d7375627363726970...
+2025-07-02 18:06:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:06:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:06:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:06:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:06:43 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=25 headers=GrpcHttp2ResponseHeaders[:status: 200, content-disposition: attachment, content-type: application/grpc, date: Wed, 02 Jul 2025 12:36:43 GMT, alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000] padding=0 endStream=false
+2025-07-02 18:06:43 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND DATA: streamId=25 padding=0 endStream=false length=963 bytes=00000003be0adb030acc0153446f6647536346544635464c5467316144774655555a5442776372485551614355707a41435a54424646656233786c476d706145...
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] DEBUG o.s.i.channel.DirectChannel - preSend on channel 'bean 'pubsubInputChannel'; defined in: 'class path resource [com/telus/notification/config/PubSubConfiguration.class]'; from source: 'com.telus.notification.config.PubSubConfiguration.pubsubInputChannel()'', message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.077815200Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"pending\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052256"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=dff72dbb-9325-9da5-aaba-9c03587853b5, timestamp=1751459803795}]
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber3] DEBUG o.s.i.channel.DirectChannel - preSend on channel 'bean 'pubsubInputChannel'; defined in: 'class path resource [com/telus/notification/config/PubSubConfiguration.class]'; from source: 'com.telus.notification.config.PubSubConfiguration.pubsubInputChannel()'', message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.085399500Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"PENDING","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.085399500Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"PENDING\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052257"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=4c8d81fe-81c9-0f0e-87ea-859fe4a4ec57, timestamp=1751459803796}]
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] DEBUG o.s.i.h.ServiceActivatingHandler - ServiceActivator for [org.springframework.integration.handler.MethodInvokingMessageProcessor@56e764d7] (notificationEventProcessor.handleMessage.serviceActivator) received message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.077815200Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"pending\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052256"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=dff72dbb-9325-9da5-aaba-9c03587853b5, timestamp=1751459803795}]
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber3] DEBUG o.s.i.h.ReplyProducingMessageHandlerWrapper - bean 'messageReceiver.serviceActivator.handler' for component 'messageReceiver.serviceActivator' received message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.085399500Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"PENDING","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.085399500Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"PENDING\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052257"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=4c8d81fe-81c9-0f0e-87ea-859fe4a4ec57, timestamp=1751459803796}]
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Received message from PubSub
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber3] DEBUG o.s.i.h.ReplyProducingMessageHandlerWrapper - handler 'bean 'messageReceiver.serviceActivator.handler' for component 'messageReceiver.serviceActivator'' produced no reply for request Message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.085399500Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"PENDING","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.085399500Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"PENDING\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052257"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=4c8d81fe-81c9-0f0e-87ea-859fe4a4ec57, timestamp=1751459803796}]
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Received String payload
+2025-07-02 18:06:43 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND HEADERS: streamId=27 headers=GrpcHttp2OutboundHeaders[:authority: pubsub.googleapis.com:443, :path: /google.pubsub.v1.Subscriber/ModifyAckDeadline, :method: POST, :scheme: https, content-type: application/grpc, te: trailers, user-agent: Spring/4.8.4 spring-cloud-gcp-pubsub/4.8.4 grpc-java-netty/1.59.0, x-goog-api-client: gl-java/21.0.4__Eclipse-Adoptium__Temurin-21.0.4-7 gapic/1.125.11 gax/2.37.0 grpc/1.59.0, x-goog-request-params: subscription=projects%2Ftelus-koodo%2Fsubscriptions%2Fuser-register-subscription, grpc-accept-encoding: gzip, authorization: Bearer ya29.c.c0ASRK0GYk038h5Px4KPmnOX1BIJNM_emPyeu9_GsZELGC_kNI0Q7HOhX83f2sbjnF775EHdwNrGPpU5JSFk8qk1MVXVkh5FEwmHO_L2kTOVZIwj6e55XT6EZoBy5ajphraEux4OEuxUPIc2QkU_iY4XY94CVk8mipUey6-wriCRu9BOIf7Fe83jnqalW99GSAL1mX7ex0HCxzJjJokWgUJ2C2xW_VQp8halADSLo6wd9v95USWz1QUXANsV60HqXrlQbA3h3axrJBbgxVzDBF-OVY8aMyuTXvu491VtDzkWlhPHrdHty_LI0VTO58_RBXuWeL0H31mLYNV_Kk_SK3bFxyOZ2iChYScUe9zT4RJbpy74hGtjOC4qvpz0gL7QO-318uIPtgo5uhQdSL-MxTPO7gLQL419KfsSOddeF0a5x_U4tZb6taJ7ea1nan0gSsQF_qnJYJ3IsysS5mshe445qwl6sjsIFwZntqaUxOgsYsXjaWZfvuu8u7inebfFhvyBicfxX9Qf1kfpnZ_RV9tvuwxn8kagn6MRV32rQ68jc666Y497F83Vvrv-i7IcoWRqy613kzi5IxfzzM_uWs94brjvlR9zrtprJequUBkUW8SgdRXmaIkuO_ibtJWWvdusBt5qZi18Fa-x-h61_v2jQxpyQ2z5u8Z9XxsVI7Zqu9Xtmrj80n_XB20zYYaq8xgUB45FRfa2bWrVrns8FBSfh4pW2zal9bSrzyd5q6ZSev-V0q7grljfXxBdokerRYVIq8ddM9rdjhOvoVQSvR6a-InYSgIwr5RxzdJ8e6-WrylOUyROX48sS1S1WhOcMrXdvBY0Y1X_R8lRoIo1-JgrJfF4ymBi6m90wXkieuB1g2zu6mbh2_kVjbW9IvfeVskxe19b4_8MIXS6-ikg32kOn2xUVs1Yq5Wbzt7FXVxIURJ6hSS_qXbU7OaV6kt6bJYyZtXqa85UVniSymQQ5XMkjx59zl04fcSgY_lW56tSUsUqk3h_vk0X8, grpc-timeout: 59997282u] streamDependency=0 weight=16 exclusive=false padding=0 endStream=false
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Message payload: {"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber3] DEBUG o.s.i.channel.DirectChannel - postSend (sent=true) on channel 'bean 'pubsubInputChannel'; defined in: 'class path resource [com/telus/notification/config/PubSubConfiguration.class]'; from source: 'com.telus.notification.config.PubSubConfiguration.pubsubInputChannel()'', message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.085399500Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"PENDING","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.085399500Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"PENDING\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052257"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=4c8d81fe-81c9-0f0e-87ea-859fe4a4ec57, timestamp=1751459803796}]
+2025-07-02 18:06:43 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND HEADERS: streamId=29 headers=GrpcHttp2OutboundHeaders[:authority: pubsub.googleapis.com:443, :path: /google.pubsub.v1.Subscriber/Acknowledge, :method: POST, :scheme: https, content-type: application/grpc, te: trailers, user-agent: Spring/4.8.4 spring-cloud-gcp-pubsub/4.8.4 grpc-java-netty/1.59.0, x-goog-api-client: gl-java/21.0.4__Eclipse-Adoptium__Temurin-21.0.4-7 gapic/1.125.11 gax/2.37.0 grpc/1.59.0, x-goog-request-params: subscription=projects%2Ftelus-koodo%2Fsubscriptions%2Fuser-register-subscription, grpc-accept-encoding: gzip, authorization: Bearer ya29.c.c0ASRK0GYk038h5Px4KPmnOX1BIJNM_emPyeu9_GsZELGC_kNI0Q7HOhX83f2sbjnF775EHdwNrGPpU5JSFk8qk1MVXVkh5FEwmHO_L2kTOVZIwj6e55XT6EZoBy5ajphraEux4OEuxUPIc2QkU_iY4XY94CVk8mipUey6-wriCRu9BOIf7Fe83jnqalW99GSAL1mX7ex0HCxzJjJokWgUJ2C2xW_VQp8halADSLo6wd9v95USWz1QUXANsV60HqXrlQbA3h3axrJBbgxVzDBF-OVY8aMyuTXvu491VtDzkWlhPHrdHty_LI0VTO58_RBXuWeL0H31mLYNV_Kk_SK3bFxyOZ2iChYScUe9zT4RJbpy74hGtjOC4qvpz0gL7QO-318uIPtgo5uhQdSL-MxTPO7gLQL419KfsSOddeF0a5x_U4tZb6taJ7ea1nan0gSsQF_qnJYJ3IsysS5mshe445qwl6sjsIFwZntqaUxOgsYsXjaWZfvuu8u7inebfFhvyBicfxX9Qf1kfpnZ_RV9tvuwxn8kagn6MRV32rQ68jc666Y497F83Vvrv-i7IcoWRqy613kzi5IxfzzM_uWs94brjvlR9zrtprJequUBkUW8SgdRXmaIkuO_ibtJWWvdusBt5qZi18Fa-x-h61_v2jQxpyQ2z5u8Z9XxsVI7Zqu9Xtmrj80n_XB20zYYaq8xgUB45FRfa2bWrVrns8FBSfh4pW2zal9bSrzyd5q6ZSev-V0q7grljfXxBdokerRYVIq8ddM9rdjhOvoVQSvR6a-InYSgIwr5RxzdJ8e6-WrylOUyROX48sS1S1WhOcMrXdvBY0Y1X_R8lRoIo1-JgrJfF4ymBi6m90wXkieuB1g2zu6mbh2_kVjbW9IvfeVskxe19b4_8MIXS6-ikg32kOn2xUVs1Yq5Wbzt7FXVxIURJ6hSS_qXbU7OaV6kt6bJYyZtXqa85UVniSymQQ5XMkjx59zl04fcSgY_lW56tSUsUqk3h_vk0X8, grpc-timeout: 59998598u] streamDependency=0 weight=16 exclusive=false padding=0 endStream=false
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Successfully parsed payload into BaseEvent
+2025-07-02 18:06:43 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND DATA: streamId=27 padding=0 endStream=true length=484 bytes=00000001df0a3d70726f6a656374732f74656c75732d6b6f6f646f2f737562736372697074696f6e732f757365722d72656769737465722d7375627363726970...
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Event type: UserRegistered
+2025-07-02 18:06:43 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND DATA: streamId=29 padding=0 endStream=true length=275 bytes=000000010e0a3d70726f6a656374732f74656c75732d6b6f6f646f2f737562736372697074696f6e732f757365722d72656769737465722d7375627363726970...
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Event data: {userId=2, username=shubham23, email=shubham316cse0677@gmailw.com, role=Manager, status=pending, rmgEmail=rmg_test@example.com}
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Entering processEvent method
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Processing event of type: UserRegistered
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.NotificationEventProcessor - Event data: {userId=2, username=shubham23, email=shubham316cse0677@gmailw.com, role=Manager, status=pending, rmgEmail=rmg_test@example.com}
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Processing UserRegistered event with data: {userId=2, username=shubham23, email=shubham316cse0677@gmailw.com, role=Manager, status=pending, rmgEmail=rmg_test@example.com}
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Extracted fields from event - username: shubham23, role: Manager, email: shubham316cse0677@gmailw.com, status: pending
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Looking for template with event type: UserRegistered
+2025-07-02 18:06:43 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Executing findByEventType query for eventType: 'UserRegistered'
+2025-07-02 18:06:43 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=27 headers=GrpcHttp2ResponseHeaders[:status: 200, content-disposition: attachment, content-type: application/grpc, date: Wed, 02 Jul 2025 12:36:44 GMT, alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000] padding=0 endStream=false
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-07-02 18:06:44 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND DATA: streamId=27 padding=0 endStream=false length=5 bytes=0000000000
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-07-02 18:06:44 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=27 headers=GrpcHttp2ResponseHeaders[grpc-status: 0, content-disposition: attachment] padding=0 endStream=true
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.SQL - 
+    /* dynamic native SQL query */ SELECT
+        * 
+    FROM
+        notification_templates 
+    WHERE
+        event_type = ?
+2025-07-02 18:06:44 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND PING: ack=false bytes=84
+2025-07-02 18:06:44 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND PING: ack=true bytes=84
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Disallowing positional selections : SELECT * FROM notification_templates WHERE event_type = :eventType
+2025-07-02 18:06:44 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=29 headers=GrpcHttp2ResponseHeaders[:status: 200, content-disposition: attachment, content-type: application/grpc, date: Wed, 02 Jul 2025 12:36:44 GMT, alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000] padding=0 endStream=false
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Initializer list
+2025-07-02 18:06:44 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND DATA: streamId=29 padding=0 endStream=false length=5 bytes=0000000000
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results -     com.telus.notification.entity.NotificationTemplate -> EntityResultInitializer(com.telus.notification.entity.NotificationTemplate)@155191418 (SingleTableEntityPersister(com.telus.notification.entity.NotificationTemplate))
+2025-07-02 18:06:44 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=29 headers=GrpcHttp2ResponseHeaders[grpc-status: 0, content-disposition: attachment] padding=0 endStream=true
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [0] - [2]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG o.h.orm.results.loading.entity - (EntityResultInitializer) Hydrated EntityKey (com.telus.notification.entity.NotificationTemplate): 2
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG o.h.orm.results.loading.entity - (EntityResultInitializer) Created new entity instance [com.telus.notification.entity.NotificationTemplate#2] : 1026733206
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [1] - [<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to TELUS</title>
+</head>
+<body>
+    <h1>Welcome to TELUS, ${userName}!</h1>
+    <p>Your account has been successfully created with the email: ${userId}</p>
+    <p>Please click <a href="${loginUrl}">here</a> to log in to your account.</p>
+    <p>If you have any questions, please don't hesitate to contact us.</p>
+    <p>Best regards,<br>The TELUS Team</p>
+</body>
+</html>]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [2] - [2025-07-02T18:01:04.388777]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [3] - [system]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [4] - [UserRegistered]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [5] - [User Registration Template]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [6] - [Welcome to TELUS]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [7] - [2025-07-02T18:01:04.388777]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [8] - [system]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG o.h.orm.results.loading.entity - (EntityResultInitializer) Done materializing entityInstance : com.telus.notification.entity.NotificationTemplate#2
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results.loading - Calling top-level assembler (0 / 1) : org.hibernate.sql.results.graph.entity.internal.EntityAssembler@638bd920
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Template found successfully
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Template Details:
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Template ID: 2
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Event Type: UserRegistered
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Subject: Welcome to TELUS
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Original Body Length: 432
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] WARN  c.t.n.s.i.NotificationTemplateServiceImpl - Template is missing placeholder: ${currentYear}
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Starting template processing
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Original template length: 432
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Variables to process: {loginUrl=https://telus.com/login, userName=shubham23, userId=shubham316cse0677@gmailw.com, currentYear=2025}
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${loginUrl} with https://telus.com/login
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${userName} with shubham23
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${userId} with shubham316cse0677@gmailw.com
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${currentYear} with 2025
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Final processed template length: 461
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Processed template message: '<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to TELUS</title>
+</head>
+<body>
+    <h1>Welcome to TELUS, shubham23!</h1>
+    <p>Your account has been successfully created with the email: shubham316cse0677@gmailw.com</p>
+    <p>Please click <a href="https://telus.com/login">here</a> to log in to your account.</p>
+    <p>If you have any questions, please don't hesitate to contact us.</p>
+    <p>Best regards,<br>The TELUS Team</p>
+</body>
+</html>'
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Sending registration email notification for user: shubham23
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Looking for template with event type: UserRegistered
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Executing findByEventType query for eventType: 'UserRegistered'
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.SQL - 
+    /* dynamic native SQL query */ SELECT
+        * 
+    FROM
+        notification_templates 
+    WHERE
+        event_type = ?
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Disallowing positional selections : SELECT * FROM notification_templates WHERE event_type = :eventType
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Initializer list
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results -     com.telus.notification.entity.NotificationTemplate -> EntityResultInitializer(com.telus.notification.entity.NotificationTemplate)@905483601 (SingleTableEntityPersister(com.telus.notification.entity.NotificationTemplate))
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [0] - [2]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG o.h.orm.results.loading.entity - (EntityResultInitializer) Hydrated EntityKey (com.telus.notification.entity.NotificationTemplate): 2
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG o.h.orm.results.loading.entity - (EntityResultInitializer) Created new entity instance [com.telus.notification.entity.NotificationTemplate#2] : 338685401
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [1] - [<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to TELUS</title>
+</head>
+<body>
+    <h1>Welcome to TELUS, ${userName}!</h1>
+    <p>Your account has been successfully created with the email: ${userId}</p>
+    <p>Please click <a href="${loginUrl}">here</a> to log in to your account.</p>
+    <p>If you have any questions, please don't hesitate to contact us.</p>
+    <p>Best regards,<br>The TELUS Team</p>
+</body>
+</html>]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [2] - [2025-07-02T18:01:04.388777]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [3] - [system]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [4] - [UserRegistered]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [5] - [User Registration Template]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [6] - [Welcome to TELUS]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [7] - [2025-07-02T18:01:04.388777]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results - Extracted JDBC value [8] - [system]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG o.h.orm.results.loading.entity - (EntityResultInitializer) Done materializing entityInstance : com.telus.notification.entity.NotificationTemplate#2
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.orm.results.loading - Calling top-level assembler (0 / 1) : org.hibernate.sql.results.graph.entity.internal.EntityAssembler@75796778
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Template found successfully
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Template Details:
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Template ID: 2
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Event Type: UserRegistered
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Subject: Welcome to TELUS
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Original Body Length: 432
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] WARN  c.t.n.s.i.NotificationTemplateServiceImpl - Template is missing placeholder: ${currentYear}
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Starting template processing
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Original template length: 432
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Variables to process: {loginUrl=https://telus.com/login, registrationDate=2025-07-02 18:06:44, userName=shubham23, userId=shubham316cse0677@gmailw.com, currentYear=2025}
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${loginUrl} with https://telus.com/login
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${registrationDate} with 2025-07-02 18:06:44
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${userName} with shubham23
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${userId} with shubham316cse0677@gmailw.com
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${currentYear} with 2025
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Final processed template length: 461
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG jakarta.mail - getProvider() returning jakarta.mail.Provider[TRANSPORT,smtp,org.eclipse.angus.mail.smtp.SMTPTransport,Oracle]
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - useEhlo true, useAuth true
+2025-07-02 18:06:44 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - trying to connect to host "smtp.gmail.com", port 587, isSSL false
+2025-07-02 18:06:45 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - connected to host "smtp.gmail.com", port: 587
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "SIZE", arg "35882577"
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "8BITMIME", arg ""
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "STARTTLS", arg ""
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "ENHANCEDSTATUSCODES", arg ""
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "PIPELINING", arg ""
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "CHUNKING", arg ""
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "SMTPUTF8", arg ""
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG jdk.event.security -  TLSHandshake: smtp.gmail.com:587, TLSv1.3, TLS_AES_256_GCM_SHA384, 3572789719
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "SIZE", arg "35882577"
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "8BITMIME", arg ""
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "AUTH", arg "LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH"
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "ENHANCEDSTATUSCODES", arg ""
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "PIPELINING", arg ""
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "CHUNKING", arg ""
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Found extension "SMTPUTF8", arg ""
+2025-07-02 18:06:46 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - protocolConnect login, host=smtp.gmail.com, user=shubham16cse06@gmail.com, password=<non-null>
+2025-07-02 18:06:47 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Attempt to authenticate using mechanisms: LOGIN PLAIN DIGEST-MD5 NTLM XOAUTH2 
+2025-07-02 18:06:47 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Using mechanism LOGIN
+2025-07-02 18:06:47 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - AUTH LOGIN command trace suppressed
+2025-07-02 18:06:47 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - AUTH LOGIN succeeded
+2025-07-02 18:06:47 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation - MailcapCommandMap: createDataContentHandler for text/html
+2025-07-02 18:06:47 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -   search DB #1
+2025-07-02 18:06:47 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -     got content-handler
+2025-07-02 18:06:47 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -       class org.eclipse.angus.mail.handlers.text_html
+2025-07-02 18:06:47 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - use8bit false
+2025-07-02 18:06:48 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - Verified Addresses
+2025-07-02 18:06:48 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp -   rmg_test@example.com
+2025-07-02 18:06:48 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp -   shubham316cse0677@gmailw.com
+2025-07-02 18:06:48 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp -   shubham316cse0677@gmailw.com
+2025-07-02 18:06:49 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation - MailcapCommandMap: createDataContentHandler for multipart/mixed
+2025-07-02 18:06:49 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -   search DB #1
+2025-07-02 18:06:49 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -   search DB #2
+2025-07-02 18:06:49 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -   search fallback DB #1
+2025-07-02 18:06:49 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -     got content-handler
+2025-07-02 18:06:49 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -       class org.eclipse.angus.mail.handlers.multipart_mixed
+2025-07-02 18:06:49 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation - MailcapCommandMap: createDataContentHandler for multipart/related
+2025-07-02 18:06:49 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -   search DB #1
+2025-07-02 18:06:49 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -   search DB #2
+2025-07-02 18:06:49 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -   search fallback DB #1
+2025-07-02 18:06:49 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -     got content-handler
+2025-07-02 18:06:49 [global-gcp-pubsub-subscriber1] DEBUG jakarta.activation -       class org.eclipse.angus.mail.handlers.multipart_mixed
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG org.eclipse.angus.mail.smtp - message successfully delivered to mail server
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [org.springframework.data.jpa.repository.support.SimpleJpaRepository.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(1152074197<open>)] for JPA transaction
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.e.t.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.e.t.internal.TransactionImpl - begin
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@2c1dedd7]
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.j.i.PersistenceUnitUtilImpl - jakarta.persistence.PersistenceUnitUtil.getIdentifier is only intended to work with enhanced entities (although Hibernate also adapts this support to its proxies); however the passed entity was not enhanced (nor a proxy).. may not be able to read identifier
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.hibernate.engine.spi.ActionQueue - Executing identity-insert immediately
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.telus.notification.entity.Notification */insert 
+    into
+        notifications (created_at, created_by, external_user_id, is_read, message, read_at, type, updated_at, updated_by, notification_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.id.IdentifierGeneratorHelper - Natively generated identity (com.telus.notification.entity.Notification) : 2
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.r.j.i.ResourceRegistryStandardImpl - HHH000387: ResultSet's statement was not registered
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.r.j.i.ResourceRegistryStandardImpl - Exception clearing maxRows/queryTimeout [The object is already closed [90007-224]]
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(1152074197<open>)]
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.e.i.AbstractFlushingEventListener - Processing flush-time cascades
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.e.i.AbstractFlushingEventListener - Dirty checking collections
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 1 objects
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.h.internal.util.EntityPrinter - com.telus.notification.entity.Notification{createdAt=2025-07-02T18:06:50.489196, updatedBy=null, createdBy=null, externalUserId=2, isRead=false, notificationId=2, message=<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to TELUS</title>
+</head>
+<body>
+    <h1>Welcome to TELUS, shubham23!</h1>
+    <p>Your account has been successfully created with the email: shubham316cse0677@gmailw.com</p>
+    <p>Please click <a href="https://telus.com/login">here</a> to log in to your account.</p>
+    <p>If you have any questions, please don't hesitate to contact us.</p>
+    <p>Best regards,<br>The TELUS Team</p>
+</body>
+</html>, readAt=null, type=UserRegistered, updatedAt=2025-07-02T18:06:50.489196}
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(1152074197<open>)] after transaction
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] INFO  c.t.n.s.NotificationEventProcessor - Notification saved to database for user: 2 with ID: 2
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.s.i.h.ServiceActivatingHandler - handler 'ServiceActivator for [org.springframework.integration.handler.MethodInvokingMessageProcessor@56e764d7] (notificationEventProcessor.handleMessage.serviceActivator)' produced no reply for request Message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.077815200Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"pending\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052256"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=dff72dbb-9325-9da5-aaba-9c03587853b5, timestamp=1751459803795}]
+2025-07-02 18:06:50 [global-gcp-pubsub-subscriber1] DEBUG o.s.i.channel.DirectChannel - postSend (sent=true) on channel 'bean 'pubsubInputChannel'; defined in: 'class path resource [com/telus/notification/config/PubSubConfiguration.class]'; from source: 'com.telus.notification.config.PubSubConfiguration.pubsubInputChannel()'', message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.077815200Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"pending\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052256"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=dff72dbb-9325-9da5-aaba-9c03587853b5, timestamp=1751459803795}]
+2025-07-02 18:06:53 [Catalina-utility-1] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1751459813238 sessioncount 0
+2025-07-02 18:06:53 [Catalina-utility-1] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 1 expired sessions: 0
+2025-07-02 18:06:55 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND DATA: streamId=25 padding=0 endStream=false length=484 bytes=00000001df0ada030acb015730673648786b6e42557865525330344e57673842564647557763484b78314547676c4b6377416d55775252586d39385a52707157...
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG o.s.i.channel.DirectChannel - preSend on channel 'bean 'pubsubInputChannel'; defined in: 'class path resource [com/telus/notification/config/PubSubConfiguration.class]'; from source: 'com.telus.notification.config.PubSubConfiguration.pubsubInputChannel()'', message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.077815200Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"pending\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052256"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=7de784e4-3923-14d4-0232-8d4c69959f3f, timestamp=1751459815031}]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG o.s.i.h.ServiceActivatingHandler - ServiceActivator for [org.springframework.integration.handler.MethodInvokingMessageProcessor@56e764d7] (notificationEventProcessor.handleMessage.serviceActivator) received message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.077815200Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"pending\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052256"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=7de784e4-3923-14d4-0232-8d4c69959f3f, timestamp=1751459815031}]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Received message from PubSub
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Received String payload
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Message payload: {"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Successfully parsed payload into BaseEvent
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Event type: UserRegistered
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Event data: {userId=2, username=shubham23, email=shubham316cse0677@gmailw.com, role=Manager, status=pending, rmgEmail=rmg_test@example.com}
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Entering processEvent method
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Processing event of type: UserRegistered
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.NotificationEventProcessor - Event data: {userId=2, username=shubham23, email=shubham316cse0677@gmailw.com, role=Manager, status=pending, rmgEmail=rmg_test@example.com}
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Processing UserRegistered event with data: {userId=2, username=shubham23, email=shubham316cse0677@gmailw.com, role=Manager, status=pending, rmgEmail=rmg_test@example.com}
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Extracted fields from event - username: shubham23, role: Manager, email: shubham316cse0677@gmailw.com, status: pending
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Looking for template with event type: UserRegistered
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Executing findByEventType query for eventType: 'UserRegistered'
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.SQL - 
+    /* dynamic native SQL query */ SELECT
+        * 
+    FROM
+        notification_templates 
+    WHERE
+        event_type = ?
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Disallowing positional selections : SELECT * FROM notification_templates WHERE event_type = :eventType
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Initializer list
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results -     com.telus.notification.entity.NotificationTemplate -> EntityResultInitializer(com.telus.notification.entity.NotificationTemplate)@22836661 (SingleTableEntityPersister(com.telus.notification.entity.NotificationTemplate))
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [0] - [2]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG o.h.orm.results.loading.entity - (EntityResultInitializer) Hydrated EntityKey (com.telus.notification.entity.NotificationTemplate): 2
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG o.h.orm.results.loading.entity - (EntityResultInitializer) Created new entity instance [com.telus.notification.entity.NotificationTemplate#2] : 959471338
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [1] - [<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to TELUS</title>
+</head>
+<body>
+    <h1>Welcome to TELUS, ${userName}!</h1>
+    <p>Your account has been successfully created with the email: ${userId}</p>
+    <p>Please click <a href="${loginUrl}">here</a> to log in to your account.</p>
+    <p>If you have any questions, please don't hesitate to contact us.</p>
+    <p>Best regards,<br>The TELUS Team</p>
+</body>
+</html>]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [2] - [2025-07-02T18:01:04.388777]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [3] - [system]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [4] - [UserRegistered]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [5] - [User Registration Template]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [6] - [Welcome to TELUS]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [7] - [2025-07-02T18:01:04.388777]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [8] - [system]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG o.h.orm.results.loading.entity - (EntityResultInitializer) Done materializing entityInstance : com.telus.notification.entity.NotificationTemplate#2
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results.loading - Calling top-level assembler (0 / 1) : org.hibernate.sql.results.graph.entity.internal.EntityAssembler@6cdf7fad
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Template found successfully
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Template Details:
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Template ID: 2
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Event Type: UserRegistered
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Subject: Welcome to TELUS
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Original Body Length: 432
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] WARN  c.t.n.s.i.NotificationTemplateServiceImpl - Template is missing placeholder: ${currentYear}
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Starting template processing
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Original template length: 432
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Variables to process: {loginUrl=https://telus.com/login, userName=shubham23, userId=shubham316cse0677@gmailw.com, currentYear=2025}
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${loginUrl} with https://telus.com/login
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${userName} with shubham23
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${userId} with shubham316cse0677@gmailw.com
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${currentYear} with 2025
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Final processed template length: 461
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Processed template message: '<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to TELUS</title>
+</head>
+<body>
+    <h1>Welcome to TELUS, shubham23!</h1>
+    <p>Your account has been successfully created with the email: shubham316cse0677@gmailw.com</p>
+    <p>Please click <a href="https://telus.com/login">here</a> to log in to your account.</p>
+    <p>If you have any questions, please don't hesitate to contact us.</p>
+    <p>Best regards,<br>The TELUS Team</p>
+</body>
+</html>'
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Sending registration email notification for user: shubham23
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Looking for template with event type: UserRegistered
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Executing findByEventType query for eventType: 'UserRegistered'
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.SQL - 
+    /* dynamic native SQL query */ SELECT
+        * 
+    FROM
+        notification_templates 
+    WHERE
+        event_type = ?
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Disallowing positional selections : SELECT * FROM notification_templates WHERE event_type = :eventType
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Initializer list
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results -     com.telus.notification.entity.NotificationTemplate -> EntityResultInitializer(com.telus.notification.entity.NotificationTemplate)@507614290 (SingleTableEntityPersister(com.telus.notification.entity.NotificationTemplate))
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [0] - [2]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG o.h.orm.results.loading.entity - (EntityResultInitializer) Hydrated EntityKey (com.telus.notification.entity.NotificationTemplate): 2
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG o.h.orm.results.loading.entity - (EntityResultInitializer) Created new entity instance [com.telus.notification.entity.NotificationTemplate#2] : 319979251
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [1] - [<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to TELUS</title>
+</head>
+<body>
+    <h1>Welcome to TELUS, ${userName}!</h1>
+    <p>Your account has been successfully created with the email: ${userId}</p>
+    <p>Please click <a href="${loginUrl}">here</a> to log in to your account.</p>
+    <p>If you have any questions, please don't hesitate to contact us.</p>
+    <p>Best regards,<br>The TELUS Team</p>
+</body>
+</html>]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [2] - [2025-07-02T18:01:04.388777]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [3] - [system]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [4] - [UserRegistered]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [5] - [User Registration Template]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [6] - [Welcome to TELUS]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [7] - [2025-07-02T18:01:04.388777]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results - Extracted JDBC value [8] - [system]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG o.h.orm.results.loading.entity - (EntityResultInitializer) Done materializing entityInstance : com.telus.notification.entity.NotificationTemplate#2
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.orm.results.loading - Calling top-level assembler (0 / 1) : org.hibernate.sql.results.graph.entity.internal.EntityAssembler@e0faaac
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Template found successfully
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Template Details:
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Template ID: 2
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Event Type: UserRegistered
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Subject: Welcome to TELUS
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - - Original Body Length: 432
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] WARN  c.t.n.s.i.NotificationTemplateServiceImpl - Template is missing placeholder: ${currentYear}
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.i.NotificationTemplateServiceImpl - Starting template processing
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Original template length: 432
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Variables to process: {loginUrl=https://telus.com/login, registrationDate=2025-07-02 18:06:55, userName=shubham23, userId=shubham316cse0677@gmailw.com, currentYear=2025}
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${loginUrl} with https://telus.com/login
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${registrationDate} with 2025-07-02 18:06:55
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${userName} with shubham23
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${userId} with shubham316cse0677@gmailw.com
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Replacing ${currentYear} with 2025
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG c.t.n.s.i.NotificationTemplateServiceImpl - Final processed template length: 461
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG jakarta.mail - getProvider() returning jakarta.mail.Provider[TRANSPORT,smtp,org.eclipse.angus.mail.smtp.SMTPTransport,Oracle]
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - useEhlo true, useAuth true
+2025-07-02 18:06:55 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - trying to connect to host "smtp.gmail.com", port 587, isSSL false
+2025-07-02 18:06:55 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND HEADERS: streamId=31 headers=GrpcHttp2OutboundHeaders[:authority: pubsub.googleapis.com:443, :path: /google.pubsub.v1.Subscriber/ModifyAckDeadline, :method: POST, :scheme: https, content-type: application/grpc, te: trailers, user-agent: Spring/4.8.4 spring-cloud-gcp-pubsub/4.8.4 grpc-java-netty/1.59.0, x-goog-api-client: gl-java/21.0.4__Eclipse-Adoptium__Temurin-21.0.4-7 gapic/1.125.11 gax/2.37.0 grpc/1.59.0, x-goog-request-params: subscription=projects%2Ftelus-koodo%2Fsubscriptions%2Fuser-register-subscription, grpc-accept-encoding: gzip, authorization: Bearer ya29.c.c0ASRK0GYk038h5Px4KPmnOX1BIJNM_emPyeu9_GsZELGC_kNI0Q7HOhX83f2sbjnF775EHdwNrGPpU5JSFk8qk1MVXVkh5FEwmHO_L2kTOVZIwj6e55XT6EZoBy5ajphraEux4OEuxUPIc2QkU_iY4XY94CVk8mipUey6-wriCRu9BOIf7Fe83jnqalW99GSAL1mX7ex0HCxzJjJokWgUJ2C2xW_VQp8halADSLo6wd9v95USWz1QUXANsV60HqXrlQbA3h3axrJBbgxVzDBF-OVY8aMyuTXvu491VtDzkWlhPHrdHty_LI0VTO58_RBXuWeL0H31mLYNV_Kk_SK3bFxyOZ2iChYScUe9zT4RJbpy74hGtjOC4qvpz0gL7QO-318uIPtgo5uhQdSL-MxTPO7gLQL419KfsSOddeF0a5x_U4tZb6taJ7ea1nan0gSsQF_qnJYJ3IsysS5mshe445qwl6sjsIFwZntqaUxOgsYsXjaWZfvuu8u7inebfFhvyBicfxX9Qf1kfpnZ_RV9tvuwxn8kagn6MRV32rQ68jc666Y497F83Vvrv-i7IcoWRqy613kzi5IxfzzM_uWs94brjvlR9zrtprJequUBkUW8SgdRXmaIkuO_ibtJWWvdusBt5qZi18Fa-x-h61_v2jQxpyQ2z5u8Z9XxsVI7Zqu9Xtmrj80n_XB20zYYaq8xgUB45FRfa2bWrVrns8FBSfh4pW2zal9bSrzyd5q6ZSev-V0q7grljfXxBdokerRYVIq8ddM9rdjhOvoVQSvR6a-InYSgIwr5RxzdJ8e6-WrylOUyROX48sS1S1WhOcMrXdvBY0Y1X_R8lRoIo1-JgrJfF4ymBi6m90wXkieuB1g2zu6mbh2_kVjbW9IvfeVskxe19b4_8MIXS6-ikg32kOn2xUVs1Yq5Wbzt7FXVxIURJ6hSS_qXbU7OaV6kt6bJYyZtXqa85UVniSymQQ5XMkjx59zl04fcSgY_lW56tSUsUqk3h_vk0X8, grpc-timeout: 59999681u] streamDependency=0 weight=16 exclusive=false padding=0 endStream=false
+2025-07-02 18:06:55 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND DATA: streamId=31 padding=0 endStream=true length=276 bytes=000000010f0a3d70726f6a656374732f74656c75732d6b6f6f646f2f737562736372697074696f6e732f757365722d72656769737465722d7375627363726970...
+2025-07-02 18:06:55 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=31 headers=GrpcHttp2ResponseHeaders[:status: 200, content-disposition: attachment, content-type: application/grpc, date: Wed, 02 Jul 2025 12:36:55 GMT, alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000] padding=0 endStream=false
+2025-07-02 18:06:55 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND DATA: streamId=31 padding=0 endStream=false length=5 bytes=0000000000
+2025-07-02 18:06:55 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=31 headers=GrpcHttp2ResponseHeaders[grpc-status: 0, content-disposition: attachment] padding=0 endStream=true
+2025-07-02 18:06:55 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND PING: ack=false bytes=86
+2025-07-02 18:06:55 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND PING: ack=true bytes=86
+2025-07-02 18:06:56 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - connected to host "smtp.gmail.com", port: 587
+2025-07-02 18:06:56 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "SIZE", arg "35882577"
+2025-07-02 18:06:56 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "8BITMIME", arg ""
+2025-07-02 18:06:56 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "STARTTLS", arg ""
+2025-07-02 18:06:56 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "ENHANCEDSTATUSCODES", arg ""
+2025-07-02 18:06:56 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "PIPELINING", arg ""
+2025-07-02 18:06:56 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "CHUNKING", arg ""
+2025-07-02 18:06:56 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "SMTPUTF8", arg ""
+2025-07-02 18:06:56 [global-gcp-pubsub-subscriber2] DEBUG jdk.event.security -  TLSHandshake: smtp.gmail.com:587, TLSv1.3, TLS_AES_256_GCM_SHA384, 3572789719
+2025-07-02 18:06:57 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "SIZE", arg "35882577"
+2025-07-02 18:06:57 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "8BITMIME", arg ""
+2025-07-02 18:06:57 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "AUTH", arg "LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH"
+2025-07-02 18:06:57 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "ENHANCEDSTATUSCODES", arg ""
+2025-07-02 18:06:57 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "PIPELINING", arg ""
+2025-07-02 18:06:57 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "CHUNKING", arg ""
+2025-07-02 18:06:57 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Found extension "SMTPUTF8", arg ""
+2025-07-02 18:06:57 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - protocolConnect login, host=smtp.gmail.com, user=shubham16cse06@gmail.com, password=<non-null>
+2025-07-02 18:06:57 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Attempt to authenticate using mechanisms: LOGIN PLAIN DIGEST-MD5 NTLM XOAUTH2 
+2025-07-02 18:06:57 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Using mechanism LOGIN
+2025-07-02 18:06:57 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - AUTH LOGIN command trace suppressed
+2025-07-02 18:06:58 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - AUTH LOGIN succeeded
+2025-07-02 18:06:58 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation - MailcapCommandMap: createDataContentHandler for text/html
+2025-07-02 18:06:58 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -   search DB #1
+2025-07-02 18:06:58 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -     got content-handler
+2025-07-02 18:06:58 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -       class org.eclipse.angus.mail.handlers.text_html
+2025-07-02 18:06:58 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - use8bit false
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - Verified Addresses
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp -   rmg_test@example.com
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp -   shubham316cse0677@gmailw.com
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp -   shubham316cse0677@gmailw.com
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation - MailcapCommandMap: createDataContentHandler for multipart/mixed
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -   search DB #1
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -   search DB #2
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -   search fallback DB #1
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -     got content-handler
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -       class org.eclipse.angus.mail.handlers.multipart_mixed
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation - MailcapCommandMap: createDataContentHandler for multipart/related
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -   search DB #1
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -   search DB #2
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -   search fallback DB #1
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -     got content-handler
+2025-07-02 18:06:59 [global-gcp-pubsub-subscriber2] DEBUG jakarta.activation -       class org.eclipse.angus.mail.handlers.multipart_mixed
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG org.eclipse.angus.mail.smtp - message successfully delivered to mail server
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [org.springframework.data.jpa.repository.support.SimpleJpaRepository.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(1880477032<open>)] for JPA transaction
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.e.t.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.e.t.internal.TransactionImpl - begin
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@7bde528c]
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.j.i.PersistenceUnitUtilImpl - jakarta.persistence.PersistenceUnitUtil.getIdentifier is only intended to work with enhanced entities (although Hibernate also adapts this support to its proxies); however the passed entity was not enhanced (nor a proxy).. may not be able to read identifier
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.hibernate.engine.spi.ActionQueue - Executing identity-insert immediately
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.telus.notification.entity.Notification */insert 
+    into
+        notifications (created_at, created_by, external_user_id, is_read, message, read_at, type, updated_at, updated_by, notification_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.id.IdentifierGeneratorHelper - Natively generated identity (com.telus.notification.entity.Notification) : 3
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.r.j.i.ResourceRegistryStandardImpl - HHH000387: ResultSet's statement was not registered
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.r.j.i.ResourceRegistryStandardImpl - Exception clearing maxRows/queryTimeout [The object is already closed [90007-224]]
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(1880477032<open>)]
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.e.i.AbstractFlushingEventListener - Processing flush-time cascades
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.e.i.AbstractFlushingEventListener - Dirty checking collections
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 1 objects
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.h.internal.util.EntityPrinter - com.telus.notification.entity.Notification{createdAt=2025-07-02T18:07:00.864121, updatedBy=null, createdBy=null, externalUserId=2, isRead=false, notificationId=3, message=<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to TELUS</title>
+</head>
+<body>
+    <h1>Welcome to TELUS, shubham23!</h1>
+    <p>Your account has been successfully created with the email: shubham316cse0677@gmailw.com</p>
+    <p>Please click <a href="https://telus.com/login">here</a> to log in to your account.</p>
+    <p>If you have any questions, please don't hesitate to contact us.</p>
+    <p>Best regards,<br>The TELUS Team</p>
+</body>
+</html>, readAt=null, type=UserRegistered, updatedAt=2025-07-02T18:07:00.864121}
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(1880477032<open>)] after transaction
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] INFO  c.t.n.s.NotificationEventProcessor - Notification saved to database for user: 2 with ID: 3
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.s.i.h.ServiceActivatingHandler - handler 'ServiceActivator for [org.springframework.integration.handler.MethodInvokingMessageProcessor@56e764d7] (notificationEventProcessor.handleMessage.serviceActivator)' produced no reply for request Message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.077815200Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"pending\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052256"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=7de784e4-3923-14d4-0232-8d4c69959f3f, timestamp=1751459815031}]
+2025-07-02 18:07:00 [global-gcp-pubsub-subscriber2] DEBUG o.s.i.channel.DirectChannel - postSend (sent=true) on channel 'bean 'pubsubInputChannel'; defined in: 'class path resource [com/telus/notification/config/PubSubConfiguration.class]'; from source: 'com.telus.notification.config.PubSubConfiguration.pubsubInputChannel()'', message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.077815200Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"pending\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052256"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=7de784e4-3923-14d4-0232-8d4c69959f3f, timestamp=1751459815031}]
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND DATA: streamId=25 padding=0 endStream=false length=484 bytes=00000001df0ada030acb015730673648786b6e42557865525330344e57673842564647557763484b78314547676c4b6377416d55775252586d39385a52707157...
+2025-07-02 18:07:06 [global-gcp-pubsub-subscriber4] DEBUG o.s.i.channel.DirectChannel - preSend on channel 'bean 'pubsubInputChannel'; defined in: 'class path resource [com/telus/notification/config/PubSubConfiguration.class]'; from source: 'com.telus.notification.config.PubSubConfiguration.pubsubInputChannel()'', message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.077815200Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"pending\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052256"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=218b8d24-68b0-8152-6145-a8f7881e25d2, timestamp=1751459826052}]
+2025-07-02 18:07:06 [global-gcp-pubsub-subscriber4] DEBUG o.s.i.h.ReplyProducingMessageHandlerWrapper - bean 'messageReceiver.serviceActivator.handler' for component 'messageReceiver.serviceActivator' received message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.077815200Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"pending\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052256"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=218b8d24-68b0-8152-6145-a8f7881e25d2, timestamp=1751459826052}]
+2025-07-02 18:07:06 [global-gcp-pubsub-subscriber4] DEBUG o.s.i.h.ReplyProducingMessageHandlerWrapper - handler 'bean 'messageReceiver.serviceActivator.handler' for component 'messageReceiver.serviceActivator'' produced no reply for request Message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.077815200Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"pending\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052256"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=218b8d24-68b0-8152-6145-a8f7881e25d2, timestamp=1751459826052}]
+2025-07-02 18:07:06 [global-gcp-pubsub-subscriber4] DEBUG o.s.i.channel.DirectChannel - postSend (sent=true) on channel 'bean 'pubsubInputChannel'; defined in: 'class path resource [com/telus/notification/config/PubSubConfiguration.class]'; from source: 'com.telus.notification.config.PubSubConfiguration.pubsubInputChannel()'', message: GenericMessage [payload={"eventType":"UserRegistered","timestamp":"2025-07-02T12:36:42.077815200Z","data":{"userId":"2","username":"shubham23","email":"shubham316cse0677@gmailw.com","role":"Manager","status":"pending","rmgEmail":"rmg_test@example.com"}}, headers={gcp_pubsub_original_message=PushedAcknowledgeablePubsubMessage{projectId='telus-koodo', subscriptionName='user-register-subscription', message=data: "{\"eventType\":\"UserRegistered\",\"timestamp\":\"2025-07-02T12:36:42.077815200Z\",\"data\":{\"userId\":\"2\",\"username\":\"shubham23\",\"email\":\"shubham316cse0677@gmailw.com\",\"role\":\"Manager\",\"status\":\"pending\",\"rmgEmail\":\"rmg_test@example.com\"}}"
+message_id: "15485653453052256"
+publish_time {
+  seconds: 1751459803
+  nanos: 861000000
+}
+}, id=218b8d24-68b0-8152-6145-a8f7881e25d2, timestamp=1751459826052}]
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND HEADERS: streamId=33 headers=GrpcHttp2OutboundHeaders[:authority: pubsub.googleapis.com:443, :path: /google.pubsub.v1.Subscriber/ModifyAckDeadline, :method: POST, :scheme: https, content-type: application/grpc, te: trailers, user-agent: Spring/4.8.4 spring-cloud-gcp-pubsub/4.8.4 grpc-java-netty/1.59.0, x-goog-api-client: gl-java/21.0.4__Eclipse-Adoptium__Temurin-21.0.4-7 gapic/1.125.11 gax/2.37.0 grpc/1.59.0, x-goog-request-params: subscription=projects%2Ftelus-koodo%2Fsubscriptions%2Fuser-register-subscription, grpc-accept-encoding: gzip, authorization: Bearer ya29.c.c0ASRK0GYk038h5Px4KPmnOX1BIJNM_emPyeu9_GsZELGC_kNI0Q7HOhX83f2sbjnF775EHdwNrGPpU5JSFk8qk1MVXVkh5FEwmHO_L2kTOVZIwj6e55XT6EZoBy5ajphraEux4OEuxUPIc2QkU_iY4XY94CVk8mipUey6-wriCRu9BOIf7Fe83jnqalW99GSAL1mX7ex0HCxzJjJokWgUJ2C2xW_VQp8halADSLo6wd9v95USWz1QUXANsV60HqXrlQbA3h3axrJBbgxVzDBF-OVY8aMyuTXvu491VtDzkWlhPHrdHty_LI0VTO58_RBXuWeL0H31mLYNV_Kk_SK3bFxyOZ2iChYScUe9zT4RJbpy74hGtjOC4qvpz0gL7QO-318uIPtgo5uhQdSL-MxTPO7gLQL419KfsSOddeF0a5x_U4tZb6taJ7ea1nan0gSsQF_qnJYJ3IsysS5mshe445qwl6sjsIFwZntqaUxOgsYsXjaWZfvuu8u7inebfFhvyBicfxX9Qf1kfpnZ_RV9tvuwxn8kagn6MRV32rQ68jc666Y497F83Vvrv-i7IcoWRqy613kzi5IxfzzM_uWs94brjvlR9zrtprJequUBkUW8SgdRXmaIkuO_ibtJWWvdusBt5qZi18Fa-x-h61_v2jQxpyQ2z5u8Z9XxsVI7Zqu9Xtmrj80n_XB20zYYaq8xgUB45FRfa2bWrVrns8FBSfh4pW2zal9bSrzyd5q6ZSev-V0q7grljfXxBdokerRYVIq8ddM9rdjhOvoVQSvR6a-InYSgIwr5RxzdJ8e6-WrylOUyROX48sS1S1WhOcMrXdvBY0Y1X_R8lRoIo1-JgrJfF4ymBi6m90wXkieuB1g2zu6mbh2_kVjbW9IvfeVskxe19b4_8MIXS6-ikg32kOn2xUVs1Yq5Wbzt7FXVxIURJ6hSS_qXbU7OaV6kt6bJYyZtXqa85UVniSymQQ5XMkjx59zl04fcSgY_lW56tSUsUqk3h_vk0X8, grpc-timeout: 59999650u] streamDependency=0 weight=16 exclusive=false padding=0 endStream=false
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND HEADERS: streamId=35 headers=GrpcHttp2OutboundHeaders[:authority: pubsub.googleapis.com:443, :path: /google.pubsub.v1.Subscriber/Acknowledge, :method: POST, :scheme: https, content-type: application/grpc, te: trailers, user-agent: Spring/4.8.4 spring-cloud-gcp-pubsub/4.8.4 grpc-java-netty/1.59.0, x-goog-api-client: gl-java/21.0.4__Eclipse-Adoptium__Temurin-21.0.4-7 gapic/1.125.11 gax/2.37.0 grpc/1.59.0, x-goog-request-params: subscription=projects%2Ftelus-koodo%2Fsubscriptions%2Fuser-register-subscription, grpc-accept-encoding: gzip, authorization: Bearer ya29.c.c0ASRK0GYk038h5Px4KPmnOX1BIJNM_emPyeu9_GsZELGC_kNI0Q7HOhX83f2sbjnF775EHdwNrGPpU5JSFk8qk1MVXVkh5FEwmHO_L2kTOVZIwj6e55XT6EZoBy5ajphraEux4OEuxUPIc2QkU_iY4XY94CVk8mipUey6-wriCRu9BOIf7Fe83jnqalW99GSAL1mX7ex0HCxzJjJokWgUJ2C2xW_VQp8halADSLo6wd9v95USWz1QUXANsV60HqXrlQbA3h3axrJBbgxVzDBF-OVY8aMyuTXvu491VtDzkWlhPHrdHty_LI0VTO58_RBXuWeL0H31mLYNV_Kk_SK3bFxyOZ2iChYScUe9zT4RJbpy74hGtjOC4qvpz0gL7QO-318uIPtgo5uhQdSL-MxTPO7gLQL419KfsSOddeF0a5x_U4tZb6taJ7ea1nan0gSsQF_qnJYJ3IsysS5mshe445qwl6sjsIFwZntqaUxOgsYsXjaWZfvuu8u7inebfFhvyBicfxX9Qf1kfpnZ_RV9tvuwxn8kagn6MRV32rQ68jc666Y497F83Vvrv-i7IcoWRqy613kzi5IxfzzM_uWs94brjvlR9zrtprJequUBkUW8SgdRXmaIkuO_ibtJWWvdusBt5qZi18Fa-x-h61_v2jQxpyQ2z5u8Z9XxsVI7Zqu9Xtmrj80n_XB20zYYaq8xgUB45FRfa2bWrVrns8FBSfh4pW2zal9bSrzyd5q6ZSev-V0q7grljfXxBdokerRYVIq8ddM9rdjhOvoVQSvR6a-InYSgIwr5RxzdJ8e6-WrylOUyROX48sS1S1WhOcMrXdvBY0Y1X_R8lRoIo1-JgrJfF4ymBi6m90wXkieuB1g2zu6mbh2_kVjbW9IvfeVskxe19b4_8MIXS6-ikg32kOn2xUVs1Yq5Wbzt7FXVxIURJ6hSS_qXbU7OaV6kt6bJYyZtXqa85UVniSymQQ5XMkjx59zl04fcSgY_lW56tSUsUqk3h_vk0X8, grpc-timeout: 59999728u] streamDependency=0 weight=16 exclusive=false padding=0 endStream=false
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND DATA: streamId=33 padding=0 endStream=true length=276 bytes=000000010f0a3d70726f6a656374732f74656c75732d6b6f6f646f2f737562736372697074696f6e732f757365722d72656769737465722d7375627363726970...
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND DATA: streamId=35 padding=0 endStream=true length=274 bytes=000000010d0a3d70726f6a656374732f74656c75732d6b6f6f646f2f737562736372697074696f6e732f757365722d72656769737465722d7375627363726970...
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=33 headers=GrpcHttp2ResponseHeaders[:status: 200, content-disposition: attachment, content-type: application/grpc, date: Wed, 02 Jul 2025 12:37:06 GMT, alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000] padding=0 endStream=false
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND DATA: streamId=33 padding=0 endStream=false length=5 bytes=0000000000
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=33 headers=GrpcHttp2ResponseHeaders[grpc-status: 0, content-disposition: attachment] padding=0 endStream=true
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND PING: ack=false bytes=88
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND PING: ack=true bytes=88
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=35 headers=GrpcHttp2ResponseHeaders[:status: 200, content-disposition: attachment, content-type: application/grpc, date: Wed, 02 Jul 2025 12:37:06 GMT, alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000] padding=0 endStream=false
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND DATA: streamId=35 padding=0 endStream=false length=5 bytes=0000000000
+2025-07-02 18:07:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=35 headers=GrpcHttp2ResponseHeaders[grpc-status: 0, content-disposition: attachment] padding=0 endStream=true
+2025-07-02 18:07:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:07:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:07:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:07:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:07:53 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1751459873296 sessioncount 0
+2025-07-02 18:07:53 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 2 expired sessions: 0
+2025-07-02 18:08:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:08:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:08:20 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=25 headers=GrpcHttp2ResponseHeaders[grpc-status: 14, grpc-message: The service was unable to fulfill your request. Please try again. [code=8a75], content-disposition: attachment] padding=0 endStream=true
+2025-07-02 18:08:20 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND RST_STREAM: streamId=25 errorCode=0
+2025-07-02 18:08:20 [Subscriber-SE-1-5] DEBUG c.g.c.p.v.StreamingSubscriberConnection - stream closed with retryable exception; will reconnect
+com.google.api.gax.rpc.UnavailableException: io.grpc.StatusRuntimeException: UNAVAILABLE: The service was unable to fulfill your request. Please try again. [code=8a75]
+	at com.google.api.gax.rpc.ApiExceptionFactory.createException(ApiExceptionFactory.java:112)
+	at com.google.api.gax.rpc.ApiExceptionFactory.createException(ApiExceptionFactory.java:41)
+	at com.google.api.gax.grpc.GrpcApiExceptionFactory.create(GrpcApiExceptionFactory.java:86)
+	at com.google.api.gax.grpc.GrpcApiExceptionFactory.create(GrpcApiExceptionFactory.java:66)
+	at com.google.api.gax.grpc.ExceptionResponseObserver.onErrorImpl(ExceptionResponseObserver.java:82)
+	at com.google.api.gax.rpc.StateCheckingResponseObserver.onError(StateCheckingResponseObserver.java:84)
+	at com.google.api.gax.grpc.GrpcDirectStreamController$ResponseObserverAdapter.onClose(GrpcDirectStreamController.java:148)
+	at io.grpc.PartialForwardingClientCallListener.onClose(PartialForwardingClientCallListener.java:39)
+	at io.grpc.ForwardingClientCallListener.onClose(ForwardingClientCallListener.java:23)
+	at io.grpc.ForwardingClientCallListener$SimpleForwardingClientCallListener.onClose(ForwardingClientCallListener.java:40)
+	at com.google.api.gax.grpc.ChannelPool$ReleasingClientCall$1.onClose(ChannelPool.java:570)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:574)
+	at io.grpc.internal.ClientCallImpl.access$300(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:742)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:723)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: io.grpc.StatusRuntimeException: UNAVAILABLE: The service was unable to fulfill your request. Please try again. [code=8a75]
+	at io.grpc.Status.asRuntimeException(Status.java:537)
+	... 17 common frames omitted
+2025-07-02 18:08:20 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND PING: ack=false bytes=90
+2025-07-02 18:08:20 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND PING: ack=true bytes=90
+2025-07-02 18:08:20 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND RST_STREAM: streamId=25 errorCode=8
+2025-07-02 18:08:20 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND HEADERS: streamId=37 headers=GrpcHttp2OutboundHeaders[:authority: pubsub.googleapis.com:443, :path: /google.pubsub.v1.Subscriber/StreamingPull, :method: POST, :scheme: https, content-type: application/grpc, te: trailers, user-agent: Spring/4.8.4 spring-cloud-gcp-pubsub/4.8.4 grpc-java-netty/1.59.0, x-goog-request-params: subscription=projects/telus-koodo/subscriptions/user-register-subscription, x-goog-api-client: gl-java/21.0.4__Eclipse-Adoptium__Temurin-21.0.4-7 gapic/1.125.11 gax/2.37.0 grpc/1.59.0, grpc-accept-encoding: gzip, authorization: Bearer ya29.c.c0ASRK0GYk038h5Px4KPmnOX1BIJNM_emPyeu9_GsZELGC_kNI0Q7HOhX83f2sbjnF775EHdwNrGPpU5JSFk8qk1MVXVkh5FEwmHO_L2kTOVZIwj6e55XT6EZoBy5ajphraEux4OEuxUPIc2QkU_iY4XY94CVk8mipUey6-wriCRu9BOIf7Fe83jnqalW99GSAL1mX7ex0HCxzJjJokWgUJ2C2xW_VQp8halADSLo6wd9v95USWz1QUXANsV60HqXrlQbA3h3axrJBbgxVzDBF-OVY8aMyuTXvu491VtDzkWlhPHrdHty_LI0VTO58_RBXuWeL0H31mLYNV_Kk_SK3bFxyOZ2iChYScUe9zT4RJbpy74hGtjOC4qvpz0gL7QO-318uIPtgo5uhQdSL-MxTPO7gLQL419KfsSOddeF0a5x_U4tZb6taJ7ea1nan0gSsQF_qnJYJ3IsysS5mshe445qwl6sjsIFwZntqaUxOgsYsXjaWZfvuu8u7inebfFhvyBicfxX9Qf1kfpnZ_RV9tvuwxn8kagn6MRV32rQ68jc666Y497F83Vvrv-i7IcoWRqy613kzi5IxfzzM_uWs94brjvlR9zrtprJequUBkUW8SgdRXmaIkuO_ibtJWWvdusBt5qZi18Fa-x-h61_v2jQxpyQ2z5u8Z9XxsVI7Zqu9Xtmrj80n_XB20zYYaq8xgUB45FRfa2bWrVrns8FBSfh4pW2zal9bSrzyd5q6ZSev-V0q7grljfXxBdokerRYVIq8ddM9rdjhOvoVQSvR6a-InYSgIwr5RxzdJ8e6-WrylOUyROX48sS1S1WhOcMrXdvBY0Y1X_R8lRoIo1-JgrJfF4ymBi6m90wXkieuB1g2zu6mbh2_kVjbW9IvfeVskxe19b4_8MIXS6-ikg32kOn2xUVs1Yq5Wbzt7FXVxIURJ6hSS_qXbU7OaV6kt6bJYyZtXqa85UVniSymQQ5XMkjx59zl04fcSgY_lW56tSUsUqk3h_vk0X8] streamDependency=0 weight=16 exclusive=false padding=0 endStream=false
+2025-07-02 18:08:20 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND DATA: streamId=37 padding=0 endStream=false length=116 bytes=000000006f0a3d70726f6a656374732f74656c75732d6b6f6f646f2f737562736372697074696f6e732f757365722d72656769737465722d7375627363726970...
+2025-07-02 18:08:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:08:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:08:53 [Catalina-utility-1] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1751459933412 sessioncount 0
+2025-07-02 18:08:53 [Catalina-utility-1] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 5 expired sessions: 0
+2025-07-02 18:09:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:09:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:09:23 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=37 headers=GrpcHttp2ResponseHeaders[:status: 200, content-type: application/grpc, date: Wed, 02 Jul 2025 12:39:23 GMT, alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000] padding=0 endStream=false
+2025-07-02 18:09:23 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=37 headers=GrpcHttp2ResponseHeaders[grpc-status: 14, grpc-message: The service was unable to fulfill your request. Please try again. [code=8a75]] padding=0 endStream=true
+2025-07-02 18:09:23 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND RST_STREAM: streamId=37 errorCode=0
+2025-07-02 18:09:23 [Subscriber-SE-1-1] DEBUG c.g.c.p.v.StreamingSubscriberConnection - stream closed with retryable exception; will reconnect
+com.google.api.gax.rpc.UnavailableException: io.grpc.StatusRuntimeException: UNAVAILABLE: The service was unable to fulfill your request. Please try again. [code=8a75]
+	at com.google.api.gax.rpc.ApiExceptionFactory.createException(ApiExceptionFactory.java:112)
+	at com.google.api.gax.rpc.ApiExceptionFactory.createException(ApiExceptionFactory.java:41)
+	at com.google.api.gax.grpc.GrpcApiExceptionFactory.create(GrpcApiExceptionFactory.java:86)
+	at com.google.api.gax.grpc.GrpcApiExceptionFactory.create(GrpcApiExceptionFactory.java:66)
+	at com.google.api.gax.grpc.ExceptionResponseObserver.onErrorImpl(ExceptionResponseObserver.java:82)
+	at com.google.api.gax.rpc.StateCheckingResponseObserver.onError(StateCheckingResponseObserver.java:84)
+	at com.google.api.gax.grpc.GrpcDirectStreamController$ResponseObserverAdapter.onClose(GrpcDirectStreamController.java:148)
+	at io.grpc.PartialForwardingClientCallListener.onClose(PartialForwardingClientCallListener.java:39)
+	at io.grpc.ForwardingClientCallListener.onClose(ForwardingClientCallListener.java:23)
+	at io.grpc.ForwardingClientCallListener$SimpleForwardingClientCallListener.onClose(ForwardingClientCallListener.java:40)
+	at com.google.api.gax.grpc.ChannelPool$ReleasingClientCall$1.onClose(ChannelPool.java:570)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:574)
+	at io.grpc.internal.ClientCallImpl.access$300(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:742)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:723)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: io.grpc.StatusRuntimeException: UNAVAILABLE: The service was unable to fulfill your request. Please try again. [code=8a75]
+	at io.grpc.Status.asRuntimeException(Status.java:537)
+	... 17 common frames omitted
+2025-07-02 18:09:23 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND PING: ack=false bytes=92
+2025-07-02 18:09:23 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND PING: ack=true bytes=92
+2025-07-02 18:09:23 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND RST_STREAM: streamId=37 errorCode=8
+2025-07-02 18:09:23 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND HEADERS: streamId=39 headers=GrpcHttp2OutboundHeaders[:authority: pubsub.googleapis.com:443, :path: /google.pubsub.v1.Subscriber/StreamingPull, :method: POST, :scheme: https, content-type: application/grpc, te: trailers, user-agent: Spring/4.8.4 spring-cloud-gcp-pubsub/4.8.4 grpc-java-netty/1.59.0, x-goog-request-params: subscription=projects/telus-koodo/subscriptions/user-register-subscription, x-goog-api-client: gl-java/21.0.4__Eclipse-Adoptium__Temurin-21.0.4-7 gapic/1.125.11 gax/2.37.0 grpc/1.59.0, grpc-accept-encoding: gzip, authorization: Bearer ya29.c.c0ASRK0GYk038h5Px4KPmnOX1BIJNM_emPyeu9_GsZELGC_kNI0Q7HOhX83f2sbjnF775EHdwNrGPpU5JSFk8qk1MVXVkh5FEwmHO_L2kTOVZIwj6e55XT6EZoBy5ajphraEux4OEuxUPIc2QkU_iY4XY94CVk8mipUey6-wriCRu9BOIf7Fe83jnqalW99GSAL1mX7ex0HCxzJjJokWgUJ2C2xW_VQp8halADSLo6wd9v95USWz1QUXANsV60HqXrlQbA3h3axrJBbgxVzDBF-OVY8aMyuTXvu491VtDzkWlhPHrdHty_LI0VTO58_RBXuWeL0H31mLYNV_Kk_SK3bFxyOZ2iChYScUe9zT4RJbpy74hGtjOC4qvpz0gL7QO-318uIPtgo5uhQdSL-MxTPO7gLQL419KfsSOddeF0a5x_U4tZb6taJ7ea1nan0gSsQF_qnJYJ3IsysS5mshe445qwl6sjsIFwZntqaUxOgsYsXjaWZfvuu8u7inebfFhvyBicfxX9Qf1kfpnZ_RV9tvuwxn8kagn6MRV32rQ68jc666Y497F83Vvrv-i7IcoWRqy613kzi5IxfzzM_uWs94brjvlR9zrtprJequUBkUW8SgdRXmaIkuO_ibtJWWvdusBt5qZi18Fa-x-h61_v2jQxpyQ2z5u8Z9XxsVI7Zqu9Xtmrj80n_XB20zYYaq8xgUB45FRfa2bWrVrns8FBSfh4pW2zal9bSrzyd5q6ZSev-V0q7grljfXxBdokerRYVIq8ddM9rdjhOvoVQSvR6a-InYSgIwr5RxzdJ8e6-WrylOUyROX48sS1S1WhOcMrXdvBY0Y1X_R8lRoIo1-JgrJfF4ymBi6m90wXkieuB1g2zu6mbh2_kVjbW9IvfeVskxe19b4_8MIXS6-ikg32kOn2xUVs1Yq5Wbzt7FXVxIURJ6hSS_qXbU7OaV6kt6bJYyZtXqa85UVniSymQQ5XMkjx59zl04fcSgY_lW56tSUsUqk3h_vk0X8] streamDependency=0 weight=16 exclusive=false padding=0 endStream=false
+2025-07-02 18:09:23 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND DATA: streamId=39 padding=0 endStream=false length=116 bytes=000000006f0a3d70726f6a656374732f74656c75732d6b6f6f646f2f737562736372697074696f6e732f757365722d72656769737465722d7375627363726970...
+2025-07-02 18:09:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:09:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:09:53 [Catalina-utility-1] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1751459993520 sessioncount 0
+2025-07-02 18:09:53 [Catalina-utility-1] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 1 expired sessions: 0
+2025-07-02 18:10:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:10:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:10:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:10:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:10:46 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=39 headers=GrpcHttp2ResponseHeaders[:status: 200, content-type: application/grpc, date: Wed, 02 Jul 2025 12:40:46 GMT, alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000] padding=0 endStream=false
+2025-07-02 18:10:46 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=39 headers=GrpcHttp2ResponseHeaders[grpc-status: 14, grpc-message: The service was unable to fulfill your request. Please try again. [code=8a75]] padding=0 endStream=true
+2025-07-02 18:10:46 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND RST_STREAM: streamId=39 errorCode=0
+2025-07-02 18:10:46 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND PING: ack=false bytes=94
+2025-07-02 18:10:46 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND PING: ack=true bytes=94
+2025-07-02 18:10:46 [Subscriber-SE-1-1] DEBUG c.g.c.p.v.StreamingSubscriberConnection - stream closed with retryable exception; will reconnect
+com.google.api.gax.rpc.UnavailableException: io.grpc.StatusRuntimeException: UNAVAILABLE: The service was unable to fulfill your request. Please try again. [code=8a75]
+	at com.google.api.gax.rpc.ApiExceptionFactory.createException(ApiExceptionFactory.java:112)
+	at com.google.api.gax.rpc.ApiExceptionFactory.createException(ApiExceptionFactory.java:41)
+	at com.google.api.gax.grpc.GrpcApiExceptionFactory.create(GrpcApiExceptionFactory.java:86)
+	at com.google.api.gax.grpc.GrpcApiExceptionFactory.create(GrpcApiExceptionFactory.java:66)
+	at com.google.api.gax.grpc.ExceptionResponseObserver.onErrorImpl(ExceptionResponseObserver.java:82)
+	at com.google.api.gax.rpc.StateCheckingResponseObserver.onError(StateCheckingResponseObserver.java:84)
+	at com.google.api.gax.grpc.GrpcDirectStreamController$ResponseObserverAdapter.onClose(GrpcDirectStreamController.java:148)
+	at io.grpc.PartialForwardingClientCallListener.onClose(PartialForwardingClientCallListener.java:39)
+	at io.grpc.ForwardingClientCallListener.onClose(ForwardingClientCallListener.java:23)
+	at io.grpc.ForwardingClientCallListener$SimpleForwardingClientCallListener.onClose(ForwardingClientCallListener.java:40)
+	at com.google.api.gax.grpc.ChannelPool$ReleasingClientCall$1.onClose(ChannelPool.java:570)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:574)
+	at io.grpc.internal.ClientCallImpl.access$300(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:742)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:723)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: io.grpc.StatusRuntimeException: UNAVAILABLE: The service was unable to fulfill your request. Please try again. [code=8a75]
+	at io.grpc.Status.asRuntimeException(Status.java:537)
+	... 17 common frames omitted
+2025-07-02 18:10:46 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND RST_STREAM: streamId=39 errorCode=8
+2025-07-02 18:10:47 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND HEADERS: streamId=41 headers=GrpcHttp2OutboundHeaders[:authority: pubsub.googleapis.com:443, :path: /google.pubsub.v1.Subscriber/StreamingPull, :method: POST, :scheme: https, content-type: application/grpc, te: trailers, user-agent: Spring/4.8.4 spring-cloud-gcp-pubsub/4.8.4 grpc-java-netty/1.59.0, x-goog-request-params: subscription=projects/telus-koodo/subscriptions/user-register-subscription, x-goog-api-client: gl-java/21.0.4__Eclipse-Adoptium__Temurin-21.0.4-7 gapic/1.125.11 gax/2.37.0 grpc/1.59.0, grpc-accept-encoding: gzip, authorization: Bearer ya29.c.c0ASRK0GYk038h5Px4KPmnOX1BIJNM_emPyeu9_GsZELGC_kNI0Q7HOhX83f2sbjnF775EHdwNrGPpU5JSFk8qk1MVXVkh5FEwmHO_L2kTOVZIwj6e55XT6EZoBy5ajphraEux4OEuxUPIc2QkU_iY4XY94CVk8mipUey6-wriCRu9BOIf7Fe83jnqalW99GSAL1mX7ex0HCxzJjJokWgUJ2C2xW_VQp8halADSLo6wd9v95USWz1QUXANsV60HqXrlQbA3h3axrJBbgxVzDBF-OVY8aMyuTXvu491VtDzkWlhPHrdHty_LI0VTO58_RBXuWeL0H31mLYNV_Kk_SK3bFxyOZ2iChYScUe9zT4RJbpy74hGtjOC4qvpz0gL7QO-318uIPtgo5uhQdSL-MxTPO7gLQL419KfsSOddeF0a5x_U4tZb6taJ7ea1nan0gSsQF_qnJYJ3IsysS5mshe445qwl6sjsIFwZntqaUxOgsYsXjaWZfvuu8u7inebfFhvyBicfxX9Qf1kfpnZ_RV9tvuwxn8kagn6MRV32rQ68jc666Y497F83Vvrv-i7IcoWRqy613kzi5IxfzzM_uWs94brjvlR9zrtprJequUBkUW8SgdRXmaIkuO_ibtJWWvdusBt5qZi18Fa-x-h61_v2jQxpyQ2z5u8Z9XxsVI7Zqu9Xtmrj80n_XB20zYYaq8xgUB45FRfa2bWrVrns8FBSfh4pW2zal9bSrzyd5q6ZSev-V0q7grljfXxBdokerRYVIq8ddM9rdjhOvoVQSvR6a-InYSgIwr5RxzdJ8e6-WrylOUyROX48sS1S1WhOcMrXdvBY0Y1X_R8lRoIo1-JgrJfF4ymBi6m90wXkieuB1g2zu6mbh2_kVjbW9IvfeVskxe19b4_8MIXS6-ikg32kOn2xUVs1Yq5Wbzt7FXVxIURJ6hSS_qXbU7OaV6kt6bJYyZtXqa85UVniSymQQ5XMkjx59zl04fcSgY_lW56tSUsUqk3h_vk0X8] streamDependency=0 weight=16 exclusive=false padding=0 endStream=false
+2025-07-02 18:10:47 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND DATA: streamId=41 padding=0 endStream=false length=116 bytes=000000006f0a3d70726f6a656374732f74656c75732d6b6f6f646f2f737562736372697074696f6e732f757365722d72656769737465722d7375627363726970...
+2025-07-02 18:10:53 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1751460053811 sessioncount 0
+2025-07-02 18:10:53 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 30 expired sessions: 0
+2025-07-02 18:11:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:11:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:11:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:11:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:11:53 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1751460113952 sessioncount 0
+2025-07-02 18:11:53 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 1 expired sessions: 0
+2025-07-02 18:12:04 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=41 headers=GrpcHttp2ResponseHeaders[:status: 200, content-type: application/grpc, date: Wed, 02 Jul 2025 12:42:04 GMT, alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000] padding=0 endStream=false
+2025-07-02 18:12:04 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND HEADERS: streamId=41 headers=GrpcHttp2ResponseHeaders[grpc-status: 14, grpc-message: The service was unable to fulfill your request. Please try again. [code=8a75]] padding=0 endStream=true
+2025-07-02 18:12:04 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND RST_STREAM: streamId=41 errorCode=0
+2025-07-02 18:12:04 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND PING: ack=false bytes=96
+2025-07-02 18:12:04 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND PING: ack=true bytes=96
+2025-07-02 18:12:04 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND RST_STREAM: streamId=41 errorCode=8
+2025-07-02 18:12:04 [Subscriber-SE-1-2] DEBUG c.g.c.p.v.StreamingSubscriberConnection - stream closed with retryable exception; will reconnect
+com.google.api.gax.rpc.UnavailableException: io.grpc.StatusRuntimeException: UNAVAILABLE: The service was unable to fulfill your request. Please try again. [code=8a75]
+	at com.google.api.gax.rpc.ApiExceptionFactory.createException(ApiExceptionFactory.java:112)
+	at com.google.api.gax.rpc.ApiExceptionFactory.createException(ApiExceptionFactory.java:41)
+	at com.google.api.gax.grpc.GrpcApiExceptionFactory.create(GrpcApiExceptionFactory.java:86)
+	at com.google.api.gax.grpc.GrpcApiExceptionFactory.create(GrpcApiExceptionFactory.java:66)
+	at com.google.api.gax.grpc.ExceptionResponseObserver.onErrorImpl(ExceptionResponseObserver.java:82)
+	at com.google.api.gax.rpc.StateCheckingResponseObserver.onError(StateCheckingResponseObserver.java:84)
+	at com.google.api.gax.grpc.GrpcDirectStreamController$ResponseObserverAdapter.onClose(GrpcDirectStreamController.java:148)
+	at io.grpc.PartialForwardingClientCallListener.onClose(PartialForwardingClientCallListener.java:39)
+	at io.grpc.ForwardingClientCallListener.onClose(ForwardingClientCallListener.java:23)
+	at io.grpc.ForwardingClientCallListener$SimpleForwardingClientCallListener.onClose(ForwardingClientCallListener.java:40)
+	at com.google.api.gax.grpc.ChannelPool$ReleasingClientCall$1.onClose(ChannelPool.java:570)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:574)
+	at io.grpc.internal.ClientCallImpl.access$300(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:742)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:723)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: io.grpc.StatusRuntimeException: UNAVAILABLE: The service was unable to fulfill your request. Please try again. [code=8a75]
+	at io.grpc.Status.asRuntimeException(Status.java:537)
+	... 17 common frames omitted
+2025-07-02 18:12:04 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND HEADERS: streamId=43 headers=GrpcHttp2OutboundHeaders[:authority: pubsub.googleapis.com:443, :path: /google.pubsub.v1.Subscriber/StreamingPull, :method: POST, :scheme: https, content-type: application/grpc, te: trailers, user-agent: Spring/4.8.4 spring-cloud-gcp-pubsub/4.8.4 grpc-java-netty/1.59.0, x-goog-request-params: subscription=projects/telus-koodo/subscriptions/user-register-subscription, x-goog-api-client: gl-java/21.0.4__Eclipse-Adoptium__Temurin-21.0.4-7 gapic/1.125.11 gax/2.37.0 grpc/1.59.0, grpc-accept-encoding: gzip, authorization: Bearer ya29.c.c0ASRK0GYk038h5Px4KPmnOX1BIJNM_emPyeu9_GsZELGC_kNI0Q7HOhX83f2sbjnF775EHdwNrGPpU5JSFk8qk1MVXVkh5FEwmHO_L2kTOVZIwj6e55XT6EZoBy5ajphraEux4OEuxUPIc2QkU_iY4XY94CVk8mipUey6-wriCRu9BOIf7Fe83jnqalW99GSAL1mX7ex0HCxzJjJokWgUJ2C2xW_VQp8halADSLo6wd9v95USWz1QUXANsV60HqXrlQbA3h3axrJBbgxVzDBF-OVY8aMyuTXvu491VtDzkWlhPHrdHty_LI0VTO58_RBXuWeL0H31mLYNV_Kk_SK3bFxyOZ2iChYScUe9zT4RJbpy74hGtjOC4qvpz0gL7QO-318uIPtgo5uhQdSL-MxTPO7gLQL419KfsSOddeF0a5x_U4tZb6taJ7ea1nan0gSsQF_qnJYJ3IsysS5mshe445qwl6sjsIFwZntqaUxOgsYsXjaWZfvuu8u7inebfFhvyBicfxX9Qf1kfpnZ_RV9tvuwxn8kagn6MRV32rQ68jc666Y497F83Vvrv-i7IcoWRqy613kzi5IxfzzM_uWs94brjvlR9zrtprJequUBkUW8SgdRXmaIkuO_ibtJWWvdusBt5qZi18Fa-x-h61_v2jQxpyQ2z5u8Z9XxsVI7Zqu9Xtmrj80n_XB20zYYaq8xgUB45FRfa2bWrVrns8FBSfh4pW2zal9bSrzyd5q6ZSev-V0q7grljfXxBdokerRYVIq8ddM9rdjhOvoVQSvR6a-InYSgIwr5RxzdJ8e6-WrylOUyROX48sS1S1WhOcMrXdvBY0Y1X_R8lRoIo1-JgrJfF4ymBi6m90wXkieuB1g2zu6mbh2_kVjbW9IvfeVskxe19b4_8MIXS6-ikg32kOn2xUVs1Yq5Wbzt7FXVxIURJ6hSS_qXbU7OaV6kt6bJYyZtXqa85UVniSymQQ5XMkjx59zl04fcSgY_lW56tSUsUqk3h_vk0X8] streamDependency=0 weight=16 exclusive=false padding=0 endStream=false
+2025-07-02 18:12:04 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND DATA: streamId=43 padding=0 endStream=false length=116 bytes=000000006f0a3d70726f6a656374732f74656c75732d6b6f6f646f2f737562736372697074696f6e732f757365722d72656769737465722d7375627363726970...
+2025-07-02 18:12:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] OUTBOUND PING: ack=false bytes=1111
+2025-07-02 18:12:06 [grpc-nio-worker-ELG-1-2] DEBUG i.g.n.s.i.g.netty.NettyClientHandler - [id: 0x4ba6d78f, L:/192.168.29.101:55358 - R:pubsub.googleapis.com/142.250.193.10:443] INBOUND PING: ack=true bytes=1111
+2025-07-02 18:12:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:12:11 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+2025-07-02 18:12:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-07-02 18:12:41 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
