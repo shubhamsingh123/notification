@@ -7,34 +7,38 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "notifications")
+@Table(name = "NOTIFICATIONS", indexes = {
+    @Index(name = "idx_notifications_user_type_read", 
+           columnList = "external_user_id,type,is_read")
+})
 public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "notification_id", nullable = false, unique = true)
-    private String notificationId;
+    @Column(name = "notification_id")
+    private Integer notificationId;
 
     @Column(name = "external_user_id", nullable = false)
     private String externalUserId;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(name = "message", nullable = false, columnDefinition = "CLOB")
     private String message;
 
-    @Column(nullable = false)
+    @Column(name = "type", nullable = false)
     private String type;
 
-    @Column(name = "is_read")
+    @Column(name = "is_read", nullable = false)
     private Boolean isRead = false;
 
+    @Column(name = "read_at")
+    private LocalDateTime readAt;
+
     @CreationTimestamp
-    @Column(name = "created_at", updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(name = "updated_at")
+    @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
     @Column(name = "created_by")
@@ -44,12 +48,12 @@ public class Notification {
     private String updatedBy;
 
     // Getters
-    public Long getId() {
-        return id;
+    public Integer getNotificationId() {
+        return notificationId;
     }
 
-    public String getNotificationId() {
-        return notificationId;
+    public LocalDateTime getReadAt() {
+        return readAt;
     }
 
     public String getExternalUserId() {
@@ -85,12 +89,12 @@ public class Notification {
     }
 
     // Setters
-    public void setId(Long id) {
-        this.id = id;
+    public void setNotificationId(Integer notificationId) {
+        this.notificationId = notificationId;
     }
 
-    public void setNotificationId(String notificationId) {
-        this.notificationId = notificationId;
+    public void setReadAt(LocalDateTime readAt) {
+        this.readAt = readAt;
     }
 
     public void setExternalUserId(String externalUserId) {

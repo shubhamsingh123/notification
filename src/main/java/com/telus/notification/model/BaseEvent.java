@@ -9,7 +9,7 @@ public class BaseEvent {
     private Map<String, Object> data;
 
     /**
-     * For UserRegisteredEvent, the data map should contain:
+     * For UserRegisterEventEvent, the data map should contain:
      * - userId: String
      * - username: String
      * - email: String

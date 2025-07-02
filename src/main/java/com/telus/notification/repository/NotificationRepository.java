@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface NotificationRepository extends JpaRepository<Notification, Long> {
+public interface NotificationRepository extends JpaRepository<Notification, Integer> {
     List<Notification> findByExternalUserId(String externalUserId);
     List<Notification> findByExternalUserIdAndType(String externalUserId, String type);
-    Optional<Notification> findByNotificationId(String notificationId);
+    Optional<Notification> findById(Integer id);
     
     @Query("SELECT COUNT(n) FROM Notification n WHERE n.externalUserId = :externalUserId AND n.isRead = false")
     long countUnreadByExternalUserId(String externalUserId);
@@ -22,10 +22,13 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
     @Modifying
     @Transactional
     @Query("UPDATE Notification n SET n.isRead = true WHERE n.notificationId = :notificationId")
-    int markAsRead(String notificationId);
+    int markAsRead(Integer notificationId);
     
     @Modifying
     @Transactional
     @Query("UPDATE Notification n SET n.isRead = true WHERE n.externalUserId = :externalUserId AND n.isRead = false")
     int markAllAsRead(String externalUserId);
+
+    @Query("SELECT n FROM Notification n WHERE n.notificationId = :notificationId")
+    Optional<Notification> findByNotificationId(Integer notificationId);
 }

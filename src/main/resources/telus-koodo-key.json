@@ -1,12 +1,13 @@
 {
   "type": "service_account",
-  "project_id": "your-project-id",
-  "private_key_id": "your-private-key-id",
-  "private_key": "your-private-key",
-  "client_email": "your-service-account-email@your-project.iam.gserviceaccount.com",
-  "client_id": "your-client-id",
+  "project_id": "telus-koodo",
+  "private_key_id": "77745820958782be694d0050342ad7e39db3b5ce",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDI9sb1GjPLUd2V\nspzcufWFmeBEcVIqlbgL+F9qK4mXxNskpuOrahRTBcCkAPqwLuhtw/coNFZK7FpA\nWwbnhEW7ONxT8hBvmWc3cIFshCbKStI/NORyXBQ6qljNv5BhG7iHZhqDt4wMAB5U\ndUL2SOL9XnKYetFfkcNtZSIoNv0LfPs1Panp4vfm0iOdOlBQ+MSwX1Utuvsi5RMq\nfkZ7CA75hIWbXGTVi/Ut0H/sQMDVqprsDmVaecmh1kfotys3PkxeKMz9wFP1WYnc\nJsyN75dfo8iPikSig9G4PIpzWcVJHYBl4wGRAv6QbaFZgCqDbTF94x/mFhQwnuYz\ngwvDD8vTAgMBAAECggEAGg1j3YJ4FHOYdj+hdjvlSFyaZkUKkdq28VZRiEH8pGAw\nyJ+aBC7MU7b7MkeuOAjcuN4evGeMiEn7qTwjuP+8ynikl31aBB2u89Dx9k9rd+4b\nM3Z35xtow/IxcPrUjMI7OdJSvaCd1zBsviY1eBga1R3ZXUsOuYT8AMKLmwsF4ucl\n/YLhF5LaL64yAHEElL6zld5Wp8mki0f4s+J0UljwLxLeu+1qq6QiEWWyp79eLT2M\nMAQhMO127kjgPpi6hOxgHg6ghPo+06/2NhGytVzq6pNeGQF14EBFApQJDZPENlN7\nsZpK7Wfuia/KoK1YLYBcZnaD6mSun7SzwwSDJSraAQKBgQDxZNR7qN5z+pdkuRdW\ndxUn18slDpkiLUMH9nrUipc8KcxCKcU9KWu7c8I36L0QjX85BXnGmfCjjPdDBPPX\nkadgHzIvxNnHsKLdqv2fmt5KRalKmmuQChOsX02rVzRU13pKrNL+DjiSw6n1jhUw\nkJ1qwmTBpNDXTPHefZBB4SbsAwKBgQDVH7EOmhbITlPDwNoGscZvY9m3aOLNPZJ/\nCMUBdoy1pLhUWpCwUYaAbiFxjVYxG3ZOsJMjLgPZjeLrmEiYqMGtvVBUUK6CNNco\nZP2Fcd+isO4tjfY98ezaiN8X80NGratYSBGQiXQ+6jks/FpRXZUkib+fT/TvnqJR\nuRLne0ff8QKBgDJVJNz39BJYwPJ2iYA06ktZenkqlxGCQITLhwcEMs6PpJBzJzY+\nicEXPPrtY2atKkbYdnDLrlpbzT7DLJjZPP4U4yEEuagik4MG4UVDRHBWIBt3IVBy\nWXHKmWZNk5LRLyWc7Y2dp3wqoiiaTJ7IuJoHGH0sAYOy/oe2xLqH2NbDAoGBAMyD\nOduiP+R9TWJWaKHt7FatwZl/28xJno+qsanCwin4ZC4GLjwUL3aEuDEICMLc8H14\ncelbWbRltHCR1HAx2JFJTpFqTtuBq0oHB0ULzieHkzdBuB8fTUMz/qkz9cYYF4mC\ntuA1Fsjc6HrjuiPEIr9KNAjDqG5ckrTLXXmmUoVxAoGBAKwpTY0BC8w812gSHA/6\nG6QId1KKhSovd6syz8r1PEptSZpCS93YyIxCA0APoSeQ8rN9A1MlPUiTExaPjtLX\nLIcoGsUOCIG+nxhqQyUXJFri1YD/7i6wKM3RbjufsHgh2x5z/eaFua4fVQtNBDfQ\nAKxRW1l/HmiWq8C4mF+IwUy6\n-----END PRIVATE KEY-----\n",
+  "client_email": "pub-sub-publisher@telus-koodo.iam.gserviceaccount.com",
+  "client_id": "104413035437478057104",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/your-service-account-email%40your-project.iam.gserviceaccount.com"
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pub-sub-publisher%40telus-koodo.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
 }

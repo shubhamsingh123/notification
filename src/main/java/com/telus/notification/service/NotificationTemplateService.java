@@ -7,8 +7,8 @@ import java.util.Map;
 public interface NotificationTemplateService {
     List<NotificationTemplate> getAllTemplates();
     NotificationTemplate saveTemplate(NotificationTemplate template);
-    NotificationTemplate getTemplateById(Long id);
-    void deleteTemplate(Long id);
+    NotificationTemplate getTemplateById(Integer id);
+    void deleteTemplate(Integer id);
     
     /**
      * Find a template by its event type

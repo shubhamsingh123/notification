@@ -4,9 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.telus.notification.model.BaseEvent;
 import com.telus.notification.model.UserRegistrationEmailModel;
 import com.telus.notification.entity.Notification;
-import com.telus.notification.entity.UserNotificationDetails;
 import com.telus.notification.repository.NotificationRepository;
-import com.telus.notification.repository.UserNotificationDetailsRepository;
 import com.telus.notification.repository.NotificationTemplateRepository;
 import com.telus.notification.exception.NotificationException;
 import com.telus.notification.service.NotificationTemplateService;
@@ -20,6 +18,7 @@ import org.springframework.messaging.Message;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.Year;
 import java.time.ZoneId;
 import java.util.Map;
 import java.util.UUID;
@@ -36,8 +35,6 @@ public class NotificationEventProcessor {
     @Autowired
     private NotificationRepository notificationRepository;
 
-    @Autowired
-    private UserNotificationDetailsRepository userNotificationDetailsRepository;
 
 @Autowired
 private NotificationTemplateService templateService;
@@ -97,17 +94,17 @@ private NotificationTemplateRepository notificationTemplateRepository;
         logger.debug("Event data: {}", event.getData());
         
         switch(event.getEventType()) {
-            case "UserRegistered":
-                handleUserRegistered(event);
+            case "UserRegisterEvent":
+                handleUserRegisterEvent(event);
                 break;
             default:
                 logger.warn("Unhandled event type: {}", event.getEventType());
         }
     }
 
-    private void handleUserRegistered(BaseEvent event) {
+    private void handleUserRegisterEvent(BaseEvent event) {
         var data = event.getData();
-        logger.info("Processing UserRegistered event with data: {}", data);
+        logger.info("Processing UserRegisterEvent event with data: {}", data);
         
         String userId = getRequiredField(data, "userId");
         String username = getRequiredField(data, "username");
@@ -137,33 +134,29 @@ private NotificationTemplateRepository notificationTemplateRepository;
         	);
         saveOrUpdateNotificationTemplate(event.getEventType(), "User Registration", templateBody);
         
-        // Save user notification details
-        UserNotificationDetails userDetails = new UserNotificationDetails();
-        userDetails.setUserId(userId);
-        userDetails.setUsername(username);
-        userDetails.setEmail(email);
-        userDetails.setRole(role);
-        userDetails.setStatus(status);
-        userDetails.setCreatedAt(LocalDateTime.now());
-        
-        userNotificationDetailsRepository.save(userDetails);
-        logger.info("Saved user notification details for user: {}", username);
+        logger.info("Processing notification for user: {}", username);
 
         logger.info("Sending registration email notification for user: {}", username);
         emailService.sendUserRegistrationEmail(emailModel, rmgEmail);
 
         // Process the template
+        // Map<String, Object> variables = new HashMap<>();
+        // variables.put("username", username);
+        // variables.put("role", role);
+        // variables.put("email", email);
+        // variables.put("status", status);
+
         Map<String, Object> variables = new HashMap<>();
-        variables.put("username", username);
-        variables.put("role", role);
-        variables.put("email", email);
-        variables.put("status", status);
+variables.put("userName", username);             // For ${userName}
+variables.put("userId", email);                  // For ${userId} (used in email text)
+variables.put("loginUrl", loginUrl);             // For ${loginUrl}
+variables.put("currentYear", Year.now().toString()); // For ${currentYear}
         
         NotificationTemplate template = templateService.getTemplateByEventType(event.getEventType());
         String message = templateService.processTemplate(template.getBodyTemplate(), variables);
         logger.info("Processed template message: '{}'", message);
 
-        saveNotification(userId, "UserRegistered", message);
+        saveNotification(userId, "UserRegisterEvent", message);
     }
 
     private void saveOrUpdateNotificationTemplate(String eventType, String name, String bodyTemplate) {
@@ -171,13 +164,65 @@ private NotificationTemplateRepository notificationTemplateRepository;
         if (template == null) {
             template = new NotificationTemplate();
             template.setEventType(eventType);
-            template.setTemplateId(UUID.randomUUID().toString());
+            template.setTemplateId(null); // Let the database auto-generate the ID
+            template.setName(name);
+            template.setSubjectTmp("New User Registration");
+            template.setBodyTemplate(getDefaultHTMLTemplate());
+            template.setCreatedAt(LocalDateTime.now());
+            template.setUpdatedAt(LocalDateTime.now());
+            template.setCreatedBy("system");
+            template.setUpdatedBy("system");
+            notificationTemplateRepository.save(template);
+            logger.info("Created new notification template for event type: {}", eventType);
         }
-        template.setName(name);
-        template.setBodyTemplate(bodyTemplate);
-        template.setUpdatedAt(LocalDateTime.now());
-        notificationTemplateRepository.save(template);
-        logger.info("Saved/Updated notification template for event type: {}", eventType);
+    }
+
+    private String getDefaultHTMLTemplate() {
+        return "<!DOCTYPE html>\n<html xmlns:th=\"http://www.thymeleaf.org\">\n<head>\n" +
+               "    <meta charset=\"UTF-8\">\n" +
+               "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+               "    <title>Welcome to TELUS</title>\n" +
+               "    <style>\n" +
+               "        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333333; margin: 0; padding: 0; }\n" +
+               "        .container { max-width: 600px; margin: 0 auto; padding: 20px; }\n" +
+               "        .header { background-color: #4B286D; padding: 20px; text-align: center; }\n" +
+               "        .header img { max-width: 150px; }\n" +
+               "        .content { padding: 20px; background-color: #ffffff; }\n" +
+               "        .footer { background-color: #f4f4f4; padding: 20px; text-align: center; font-size: 12px; }\n" +
+               "        .button { display: inline-block; padding: 10px 20px; background-color: #66CC00; color: #ffffff; text-decoration: none; border-radius: 5px; margin: 20px 0; }\n" +
+               "    </style>\n" +
+               "</head>\n" +
+               "<body>\n" +
+               "    <div class=\"container\">\n" +
+               "        <div class=\"header\">\n" +
+               "            <img src=\"cid:telus-logo\" alt=\"TELUS Logo\">\n" +
+               "        </div>\n" +
+               "        <div class=\"content\">\n" +
+               "            <h2>Welcome to TELUS!</h2>\n" +
+               "            <p>Dear ${userName},</p>\n" +
+               "            <p>Thank you for registering with TELUS. We're excited to have you on board!</p>\n" +
+               "            <p>Your account has been successfully created with the following details:</p>\n" +
+               "            <ul>\n" +
+               "                <li>Username: ${userName}</li>\n" +
+               "                <li>Email: ${userId}</li>\n" +
+               "            </ul>\n" +
+               "            <p>What's Next?</p>\n" +
+               "            <ul>\n" +
+               "                <li>Complete your profile</li>\n" +
+               "                <li>Explore our services</li>\n" +
+               "                <li>Contact support if you need assistance</li>\n" +
+               "            </ul>\n" +
+               "            <a href=\"${loginUrl}\" class=\"button\">Login to Your Account</a>\n" +
+               "            <p>If you have any questions or need assistance, please don't hesitate to contact our support team.</p>\n" +
+               "            <p>Best regards,<br>The TELUS Team</p>\n" +
+               "        </div>\n" +
+               "        <div class=\"footer\">\n" +
+               "            <p>This email was sent to ${userId}. Please do not reply to this email.</p>\n" +
+               "            <p>&copy; ${currentYear} TELUS. All rights reserved.</p>\n" +
+               "        </div>\n" +
+               "    </div>\n" +
+               "</body>\n" +
+               "</html>";
     }
 
     private String getOptionalField(Map<String, Object> data, String fieldName, String defaultValue) {
@@ -194,15 +239,14 @@ private NotificationTemplateRepository notificationTemplateRepository;
 
     private void saveNotification(String externalUserId, String type, String message) {
         Notification notification = new Notification();
-        notification.setNotificationId(UUID.randomUUID().toString());
         notification.setExternalUserId(externalUserId);
         notification.setType(type);
         notification.setMessage(message);
         notification.setCreatedAt(LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()));
         notification.setIsRead(false);
 
-        notificationRepository.save(notification);
-        logger.info("Notification saved to database for user: {}", externalUserId);
+        Notification savedNotification = notificationRepository.save(notification);
+        logger.info("Notification saved to database for user: {} with ID: {}", externalUserId, savedNotification.getNotificationId());
     }
 
     private String getRequiredField(Map<String, Object> data, String fieldName) {

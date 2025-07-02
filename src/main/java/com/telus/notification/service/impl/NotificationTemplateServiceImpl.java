@@ -39,12 +39,12 @@ public class NotificationTemplateServiceImpl implements NotificationTemplateServ
     }
 
     @Override
-    public NotificationTemplate getTemplateById(Long id) {
+    public NotificationTemplate getTemplateById(Integer id) {
         return notificationTemplateRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void deleteTemplate(Long id) {
+    public void deleteTemplate(Integer id) {
         notificationTemplateRepository.deleteById(id);
     }
 
@@ -55,23 +55,15 @@ public class NotificationTemplateServiceImpl implements NotificationTemplateServ
     private void logTemplateDetails(NotificationTemplate template) {
         if (template != null) {
             String originalBody = template.getBodyTemplate();
-            String strippedBody = stripWhitespace(originalBody);
             
             logger.info("Template Details:");
-            logger.info("- ID: {}", template.getId());
+            logger.info("- Template ID: {}", template.getTemplateId());
             logger.info("- Event Type: {}", template.getEventType());
+            logger.info("- Subject: {}", template.getSubjectTmp());
             logger.info("- Original Body Length: {}", originalBody.length());
-            logger.info("- Stripped Body Length: {}", strippedBody.length());
-            logger.info("- Original Body: '{}'", originalBody);
-            logger.info("- Stripped Body: '{}'", strippedBody);
             
-            // Check for potential issues
-            if (originalBody.length() != strippedBody.length()) {
-                logger.warn("Template body contains extra whitespace or hidden characters");
-            }
-            
-            // Check placeholder format
-            String[] placeholders = {"{{username}}", "{{role}}", "{{email}}", "{{status}}"};
+            // Check for required placeholders
+            String[] placeholders = {"${userName}", "${userId}", "${loginUrl}", "${currentYear}"};
             for (String placeholder : placeholders) {
                 if (!originalBody.contains(placeholder)) {
                     logger.warn("Template is missing placeholder: {}", placeholder);
@@ -130,19 +122,19 @@ public class NotificationTemplateServiceImpl implements NotificationTemplateServ
             return "Template processing error: template is null";
         }
         
-        logger.info("Starting Thymeleaf template processing");
-        logger.info("Original template: '{}'", template);
-        logger.info("Variables to process: {}", variables);
+        logger.info("Starting template processing");
+        logger.debug("Original template length: {}", template.length());
+        logger.debug("Variables to process: {}", variables);
         
-        Context context = new Context();
-        variables.forEach((key, value) -> {
-            context.setVariable(key, value);
-            logger.info("Setting variable '{}' with value '{}'", key, value);
-        });
+        String processed = template;
+        for (Map.Entry<String, Object> entry : variables.entrySet()) {
+            String placeholder = "${" + entry.getKey() + "}";
+            String value = entry.getValue() != null ? entry.getValue().toString() : "";
+            processed = processed.replace(placeholder, value);
+            logger.debug("Replacing {} with {}", placeholder, value);
+        }
         
-        String processed = templateEngine.process(template, context);
-        
-        logger.info("Final processed template: '{}'", processed);
+        logger.debug("Final processed template length: {}", processed.length());
         return processed;
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface NotificationTemplateRepository extends JpaRepository<NotificationTemplate, Long> {
+public interface NotificationTemplateRepository extends JpaRepository<NotificationTemplate, Integer> {
     /**
      * Find a template by its event type
      * @param eventType the type of event

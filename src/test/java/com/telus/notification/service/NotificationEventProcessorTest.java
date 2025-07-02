@@ -15,17 +15,17 @@ public class NotificationEventProcessorTest {
 
     @Test
     public void testHandleMessage() throws Exception {
-        // Create dummy JSON payload for UserRegistered event
+        // Create dummy JSON payload for UserRegisterEvent event
         String jsonPayload = """
             {
-"eventType": "UserRegistered",
+"eventType": "UserRegisterEvent",
 "timestamp": "2025-06-26T12:30:45.123Z",
 "data": {
 "userId": "12345",
 "username": "john.doe",
 "email": "john.doe@example.com",
 "role": "Manager",
-"status": "pending"
+"status": "pending",
 "rmgEmail" : "shubham16cse06@gmail.com"
 }
 }

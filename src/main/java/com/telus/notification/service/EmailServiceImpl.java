@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.time.Year;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -56,7 +57,7 @@ public class EmailServiceImpl implements EmailService {
             helper.setSubject("New User Registration - TELUS");
 
             // Get template from database
-            NotificationTemplate template = templateService.getTemplateByEventType("USER_REGISTRATION");
+            NotificationTemplate template = templateService.getTemplateByEventType("UserRegisterEvent");
             if (template == null) {
                 throw new RuntimeException("User registration template not found in database");
             }

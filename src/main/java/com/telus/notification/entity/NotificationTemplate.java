@@ -1,58 +1,55 @@
 package com.telus.notification.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "notification_templates")
+@Table(name = "NOTIFICATION_TEMPLATES", indexes = {
+    @Index(name = "idx_notification_templates_event_type", 
+           columnList = "event_type")
+})
 public class NotificationTemplate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name = "template_id")
-    private String templateId;
+    private Integer templateId;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, unique = true, length = 100)
     private String name;
 
-    @Column(name = "event_type")
-    private String eventType;
+    @Column(name = "subject_tmp", nullable = false, length = 200)
+    private String subjectTmp;
 
-    @Column(name = "body_template")
+    @Column(name = "body_template", nullable = false, columnDefinition = "CLOB")
     private String bodyTemplate;
 
-    @Column(name = "created_by")
+    @Column(name = "event_type", nullable = false, length = 50)
+    private String eventType;
+
+    @Column(name = "created_by", length = 50)
     private String createdBy;
 
-    @Column(name = "updated_by")
+    @Column(name = "updated_by", length = 50)
     private String updatedBy;
 
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
-
     // Getters
-    public Long getId() {
-        return id;
+    public Integer getTemplateId() {
+        return templateId;
     }
 
-    public String getTemplateId() {
-        return templateId;
+    public String getSubjectTmp() {
+        return subjectTmp;
     }
 
     public String getName() {
@@ -84,12 +81,12 @@ public class NotificationTemplate {
     }
 
     // Setters
-    public void setId(Long id) {
-        this.id = id;
+    public void setTemplateId(Integer templateId) {
+        this.templateId = templateId;
     }
 
-    public void setTemplateId(String templateId) {
-        this.templateId = templateId;
+    public void setSubjectTmp(String subjectTmp) {
+        this.subjectTmp = subjectTmp;
     }
 
     public void setName(String name) {
