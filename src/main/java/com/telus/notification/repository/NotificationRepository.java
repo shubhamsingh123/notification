@@ -16,6 +16,8 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
     List<Notification> findByExternalUserIdAndType(String externalUserId, String type);
     Optional<Notification> findById(Integer id);
     
+    List<Notification> findByExternalUserIdAndIsReadFalse(String externalUserId);
+    
     @Query("SELECT COUNT(n) FROM Notification n WHERE n.externalUserId = :externalUserId AND n.isRead = false")
     long countUnreadByExternalUserId(String externalUserId);
     

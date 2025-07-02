@@ -221,7 +221,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
 
     private void saveNotification(String externalUserId, String type, String message) {
         Notification notification = new Notification();
-        notification.setExternalUserId(externalUserId);
+        notification.setExternalUserId("1"); // Hardcoded to "1"
         notification.setType(type);
         notification.setMessage(message);
         notification.setCreatedAt(LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()));
