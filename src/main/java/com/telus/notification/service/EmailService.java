@@ -1,5 +1,6 @@
 package com.telus.notification.service;
 
+import com.telus.notification.model.UserAccountApprovalEmailModel;
 import com.telus.notification.model.UserRegistrationEmailModel;
 
 public interface EmailService {
@@ -9,6 +10,16 @@ public interface EmailService {
      * @param rmgEmail The email address of the Resource Management Group (primary recipient)
      */
     void sendUserRegistrationEmail(UserRegistrationEmailModel model, String rmgEmail);
+
+    
+    void sendAccountApproveEmail(UserAccountApprovalEmailModel model, String rmgEmail);
+
+    /**
+     * Sends an account rejection email using HTML template.
+     * @param model The UserAccountApprovalEmailModel containing user details
+     * @param rmgEmail The email address of the Resource Management Group (primary recipient)
+     */
+    void sendAccountRejectionEmail(UserAccountApprovalEmailModel model, String rmgEmail);
 
     /**
      * Sends a simple text email message.

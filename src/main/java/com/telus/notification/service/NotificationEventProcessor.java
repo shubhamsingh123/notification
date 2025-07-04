@@ -2,6 +2,7 @@ package com.telus.notification.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.telus.notification.model.BaseEvent;
+import com.telus.notification.model.UserAccountApprovalEmailModel;
 import com.telus.notification.model.UserRegistrationEmailModel;
 import com.telus.notification.entity.Notification;
 import com.telus.notification.repository.NotificationRepository;
@@ -93,13 +94,22 @@ private NotificationTemplateRepository notificationTemplateRepository;
         logger.info("Processing event of type: {}", event.getEventType());
         logger.debug("Event data: {}", event.getData());
         
-        switch(event.getEventType()) {
-            case "UserRegistered":
-                handleUserRegisterEvent(event);
-                break;
-            default:
-                logger.warn("Unhandled event type: {}", event.getEventType());
-        }
+        switch (event.getEventType()) {
+        case "UserRegistered":
+            handleUserRegisterEvent(event);
+            break;
+
+        case "AccountApproved":
+            handleAccountApproved(event);
+            break;
+
+        case "AccountReject":
+            handleAccountReject(event);
+            break;
+
+        default:
+            logger.warn("Unhandled event type: {}", event.getEventType());
+    }
     }
 
     private void handleUserRegisterEvent(BaseEvent event) {
@@ -147,7 +157,89 @@ private NotificationTemplateRepository notificationTemplateRepository;
 
         saveNotification(userId, "UserRegistered", message);
     }
+    
+    private void handleAccountApproved(BaseEvent event) {
+        var data = event.getData();
+        logger.info("Processing AccountApproved event with data: {}", data);
+        
+        String userId = getRequiredField(data, "userId");
+        String username = getRequiredField(data, "username");
+        String email = getRequiredField(data, "email");
+        String rmgEmail = getOptionalField(data, "rmgEmail", "shubham16cse06@gmail.com");
+        String managerEmail = getOptionalField(data, "managerEmail", email); // Default to user's email if not provided
 
+        logger.info("Extracted fields from event - username: {}, email: {}", username, email);
+
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("userName", username);
+        variables.put("userId", email);
+        variables.put("currentYear", Year.now().toString());
+        
+        NotificationTemplate template = templateService.getTemplateByEventType(event.getEventType());
+        if (template == null) {
+            logger.error("No template found for event type: {}", event.getEventType());
+            throw new NotificationException("Template not found for event type: " + event.getEventType());
+        }
+        
+        String message = templateService.processTemplate(template.getBodyTemplate(), variables);
+        logger.info("Processed template message: '{}'", message);
+
+        // Create email model
+        UserAccountApprovalEmailModel approvedEmailModel = new UserAccountApprovalEmailModel(
+            username,
+            email,
+            managerEmail,
+            LocalDateTime.now()
+        );
+        
+        logger.info("Sending account approval email notification for user: {}", username);
+        emailService.sendAccountApproveEmail(approvedEmailModel, rmgEmail);
+
+        saveNotification(userId, "AccountApproved", message);
+    }
+
+    
+    private void handleAccountReject(BaseEvent event) {
+        var data = event.getData();
+        logger.info("Processing AccountReject event with data: {}", data);
+        
+        String userId = getRequiredField(data, "userId");
+        String username = getRequiredField(data, "username");
+        String email = getRequiredField(data, "email");
+        String rmgEmail = getOptionalField(data, "rmgEmail", "shubham16cse06@gmail.com");
+        String managerEmail = getOptionalField(data, "managerEmail", email); // Default to user's email if not provided
+
+        logger.info("Extracted fields from event - username: {}, email: {}", username, email);
+
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("userName", username);
+        variables.put("userId", email);
+        variables.put("currentYear", Year.now().toString());
+        
+        NotificationTemplate template = templateService.getTemplateByEventType(event.getEventType());
+        if (template == null) {
+            logger.error("No template found for event type: {}", event.getEventType());
+            throw new NotificationException("Template not found for event type: " + event.getEventType());
+        }
+        
+        String message = templateService.processTemplate(template.getBodyTemplate(), variables);
+        logger.info("Processed template message: '{}'", message);
+
+        // Create email model
+        UserAccountApprovalEmailModel rejectedEmailModel = new UserAccountApprovalEmailModel(
+            username,
+            email,
+            managerEmail,
+            LocalDateTime.now()
+        );
+        
+        logger.info("Sending account rejection email notification for user: {}", username);
+        emailService.sendAccountRejectionEmail(rejectedEmailModel, rmgEmail);
+
+        saveNotification(userId, "AccountReject", message);
+    }
+
+    
     private void updateNotificationTemplate(String eventType, Map<String, Object> data) {
         try {
             NotificationTemplate updatedTemplate = templateService.updateTemplateBody(eventType, data);

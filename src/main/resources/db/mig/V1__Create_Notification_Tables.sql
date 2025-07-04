@@ -285,19 +285,123 @@ VALUES (
   'User Registration Template',
   'Welcome to TELUS',
   '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Approved - TELUS</title>
+    <style>
+        @import url(''https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap'');
+        
+        body {
+            font-family: ''Roboto'', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #4B286D 0%, #66CC00 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+        }
+        .content {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #4B286D;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #66CC00;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #4B286D;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+        .icon {
+            font-size: 24px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="./Telus-Logo.svg" alt="TELUS Logo" class="logo">
+        </div>
+        <div class="content">
+            <h1>🎉 Congratulations, Shubham!</h1>
+            <p>Your <strong>TELUS</strong> account has been <strong>approved</strong> and is now active. 🚀</p>
+            <p>You can now access all TELUS services using your email:</p>
+            <p style="font-weight: bold; color: #4B286D;">${userEmail}</p>
+            <a href="${loginUrl}" class="cta-button">Log in to Your Account</a>
+            <p>If you have any questions about your account or our services, our support team is here to help.</p>
+            <p>
+                <span class="icon">📞</span> Call us: 1-888-811-2323<br>
+                <span class="icon">✉️</span> Email: support@telus.com
+            </p>
+            <p>Best regards,<br><strong>The TELUS Team</strong></p>
+        </div>
+        <div class="footer">
+            © ${currentYear} TELUS. All rights reserved.<br>
+            <a href="https://www.telus.com/privacy" style="color: #4B286D;">Privacy Policy</a> | 
+            <a href="https://www.telus.com/terms" style="color: #4B286D;">Terms of Service</a>
+        </div>
+    </div>
+</body>
+</html>',
+  'UserRegistered',
+  'system',
+  'system'
+);
+
+
+-- Sample data for NOTIFICATION_TEMPLATES
+INSERT INTO NOTIFICATION_TEMPLATES (name, subject_tmp, body_template, event_type, created_by, updated_by)
+VALUES (
+  'Account Approved',
+  'Welcome to TELUS',
+  '<!DOCTYPE html>
 <html>
 <head>
     <title>Welcome to TELUS</title>
 </head>
 <body>
     <h1>Welcome to TELUS, ${userName}!</h1>
-    <p>Your account has been successfully created with the email: ${userId}</p>
-    <p>Please click <a href="${loginUrl}">here</a> to log in to your account.</p>
-    <p>If you have any questions, please don''t hesitate to contact us.</p>
-    <p>Best regards,<br>The TELUS Team</p>
+    
 </body>
 </html>',
-  'UserRegistered',
+  'AccountApproved',
   'system',
   'system'
 );
