@@ -14,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.integration.annotation.ServiceActivator;
-import org.springframework.messaging.Message;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -45,36 +43,6 @@ private ObjectMapper objectMapper;
 
 @Autowired
 private NotificationTemplateRepository notificationTemplateRepository;
-
-    @ServiceActivator(inputChannel = "pubsubInputChannel")
-    public void handleMessage(Message<?> message) {
-        logger.info("Received message from PubSub");
-        String payload;
-        Object rawPayload = message.getPayload();
-        
-        if (rawPayload instanceof byte[]) {
-            payload = new String((byte[]) rawPayload);
-            logger.info("Received byte[] payload, converted to String");
-        } else if (rawPayload instanceof String) {
-            payload = (String) rawPayload;
-            logger.info("Received String payload");
-        } else {
-            logger.error("Unexpected payload type: {}", rawPayload.getClass());
-            return;
-        }
-        
-        logger.info("Message payload: {}", payload);
-        
-        try {
-            BaseEvent event = objectMapper.readValue(payload, BaseEvent.class);
-            logger.info("Successfully parsed payload into BaseEvent");
-            logger.info("Event type: {}", event.getEventType());
-            logger.info("Event data: {}", event.getData());
-            processEvent(event);
-        } catch (Exception e) {
-            logger.error("Error processing PubSub message", e);
-        }
-    }
 
     public void processEvent(BaseEvent event) {
         logger.info("Entering processEvent method");
@@ -155,7 +123,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
         logger.info("Sending registration email notification for user: {}", username);
         emailService.sendUserRegistrationEmail(emailModel, rmgEmail);
 
-        saveNotification(userId, "UserRegistered", message);
+        // saveNotification(userId, "UserRegistered", message);
     }
     
     private void handleAccountApproved(BaseEvent event) {
@@ -195,7 +163,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
         logger.info("Sending account approval email notification for user: {}", username);
         emailService.sendAccountApproveEmail(approvedEmailModel, rmgEmail);
 
-        saveNotification(userId, "AccountApproved", message);
+        // saveNotification(userId, "AccountApproved", message);
     }
 
     
@@ -216,15 +184,6 @@ private NotificationTemplateRepository notificationTemplateRepository;
         variables.put("userId", email);
         variables.put("currentYear", Year.now().toString());
         
-        NotificationTemplate template = templateService.getTemplateByEventType(event.getEventType());
-        if (template == null) {
-            logger.error("No template found for event type: {}", event.getEventType());
-            throw new NotificationException("Template not found for event type: " + event.getEventType());
-        }
-        
-        String message = templateService.processTemplate(template.getBodyTemplate(), variables);
-        logger.info("Processed template message: '{}'", message);
-
         // Create email model
         UserAccountApprovalEmailModel rejectedEmailModel = new UserAccountApprovalEmailModel(
             username,
@@ -236,7 +195,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
         logger.info("Sending account rejection email notification for user: {}", username);
         emailService.sendAccountRejectionEmail(rejectedEmailModel, rmgEmail);
 
-        saveNotification(userId, "AccountReject", message);
+        saveNotification(userId, "AccountReject", "Your account registration has been rejected.");
     }
 
     

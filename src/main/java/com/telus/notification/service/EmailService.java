@@ -28,4 +28,12 @@ public interface EmailService {
      * @param text email content
      */
     void sendSimpleMessage(String to, String subject, String text);
+
+    /**
+     * Sends an HTML email message.
+     * @param to recipient email address
+     * @param subject email subject
+     * @param htmlContent email content in HTML format
+     */
+    void sendHtmlEmail(String to, String subject, String htmlContent);
 }

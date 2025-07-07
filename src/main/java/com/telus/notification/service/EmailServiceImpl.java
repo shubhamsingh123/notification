@@ -30,6 +30,9 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private NotificationTemplateService templateService;
 
+    @Autowired
+    private NotificationTemplates notificationTemplates;
+
     @Override
     public void sendSimpleMessage(String to, String subject, String text) {
         try {
@@ -57,25 +60,19 @@ public class EmailServiceImpl implements EmailService {
             helper.setCc(new String[]{model.getUserEmail(), model.getManagerEmail()});
             helper.setSubject("New User Registration - TELUS");
 
-            // Get template from database
-            NotificationTemplate template = templateService.getTemplateByEventType("UserRegistered");
-            if (template == null) {
-                throw new RuntimeException("User registration template not found in database");
-            }
-
             // Prepare variables for template
             Map<String, Object> variables = new HashMap<>();
             variables.put("userName", model.getUserName());
-            variables.put("userId", model.getUserEmail()); // Template uses userId for email
+            variables.put("userId", model.getUserEmail());
             variables.put("registrationDate", model.getRegistrationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             variables.put("loginUrl", model.getLoginUrl());
-            variables.put("currentYear", java.time.Year.now().getValue());
 
             // Process template with variables
-            String htmlContent = templateService.processTemplate(template.getBodyTemplate(), variables);
+            String htmlContent = notificationTemplates.getUserRegistrationTemplate(variables);
             helper.setText(htmlContent, true);
 
             mailSender.send(message);
+            logger.info("Registration email sent to RMG {}, user {}, and manager {}", rmgEmail, model.getUserEmail(), model.getManagerEmail());
         } catch (MessagingException e) {
             logger.error("Failed to send registration email to RMG {}, user {}, and manager {}", rmgEmail, model.getUserEmail(), model.getManagerEmail(), e);
             throw new RuntimeException("Failed to send registration email", e);
@@ -98,27 +95,41 @@ public class EmailServiceImpl implements EmailService {
             helper.setCc(new String[]{model.getUserEmail(), model.getManagerEmail()});
             helper.setSubject("Account Approved - TELUS");
 
-            // Get template from database
-            NotificationTemplate template = templateService.getTemplateByEventType("AccountApproved");
-            if (template == null) {
-                throw new RuntimeException("Account approval template not found in database");
-            }
-
             // Prepare variables for template
             Map<String, Object> variables = new HashMap<>();
             variables.put("userName", model.getUserName());
-            variables.put("userId", model.getUserEmail()); // Template uses userId for email
+            variables.put("userId", model.getUserEmail());
             variables.put("registrationDate", model.getRegistrationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             variables.put("currentYear", java.time.Year.now().getValue());
 
             // Process template with variables
-            String htmlContent = templateService.processTemplate(template.getBodyTemplate(), variables);
+            String htmlContent = notificationTemplates.getAccountApprovalTemplate(variables);
             helper.setText(htmlContent, true);
 
             mailSender.send(message);
+            logger.info("Account approval email sent to RMG {}, user {}, and manager {}", rmgEmail, model.getUserEmail(), model.getManagerEmail());
         } catch (MessagingException e) {
             logger.error("Failed to send approval email to RMG {}, user {}, and manager {}", rmgEmail, model.getUserEmail(), model.getManagerEmail(), e);
             throw new RuntimeException("Failed to send approval email", e);
+        }
+    }
+
+    @Override
+    public void sendHtmlEmail(String to, String subject, String htmlContent) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setFrom("noreply@telus.com");
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(htmlContent, true);
+
+            mailSender.send(message);
+            logger.info("HTML email sent to: {}", to);
+        } catch (MessagingException e) {
+            logger.error("Failed to send HTML email to: {}", to, e);
+            throw new RuntimeException("Failed to send HTML email", e);
         }
     }
 
@@ -133,24 +144,19 @@ public class EmailServiceImpl implements EmailService {
             helper.setCc(new String[]{model.getUserEmail(), model.getManagerEmail()});
             helper.setSubject("Account Rejected - TELUS");
 
-            // Get template from database
-            NotificationTemplate template = templateService.getTemplateByEventType("AccountReject");
-            if (template == null) {
-                throw new RuntimeException("Account rejection template not found in database");
-            }
-
             // Prepare variables for template
             Map<String, Object> variables = new HashMap<>();
             variables.put("userName", model.getUserName());
-            variables.put("userId", model.getUserEmail()); // Template uses userId for email
+            variables.put("userId", model.getUserEmail());
             variables.put("registrationDate", model.getRegistrationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             variables.put("currentYear", java.time.Year.now().getValue());
 
             // Process template with variables
-            String htmlContent = templateService.processTemplate(template.getBodyTemplate(), variables);
+            String htmlContent = notificationTemplates.getAccountRejectionTemplate(variables);
             helper.setText(htmlContent, true);
 
             mailSender.send(message);
+            logger.info("Account rejection email sent to RMG {}, user {}, and manager {}", rmgEmail, model.getUserEmail(), model.getManagerEmail());
         } catch (MessagingException e) {
             logger.error("Failed to send rejection email to RMG {}, user {}, and manager {}", rmgEmail, model.getUserEmail(), model.getManagerEmail(), e);
             throw new RuntimeException("Failed to send rejection email", e);
