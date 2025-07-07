@@ -71,7 +71,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
             handleAccountApproved(event);
             break;
 
-        case "AccountReject":
+        case "AccountRejected":
             handleAccountReject(event);
             break;
 
@@ -142,15 +142,6 @@ private NotificationTemplateRepository notificationTemplateRepository;
         variables.put("userName", username);
         variables.put("userId", email);
         variables.put("currentYear", Year.now().toString());
-        
-        NotificationTemplate template = templateService.getTemplateByEventType(event.getEventType());
-        if (template == null) {
-            logger.error("No template found for event type: {}", event.getEventType());
-            throw new NotificationException("Template not found for event type: " + event.getEventType());
-        }
-        
-        String message = templateService.processTemplate(template.getBodyTemplate(), variables);
-        logger.info("Processed template message: '{}'", message);
 
         // Create email model
         UserAccountApprovalEmailModel approvedEmailModel = new UserAccountApprovalEmailModel(
