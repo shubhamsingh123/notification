@@ -71,7 +71,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
             handleAccountApproved(event);
             break;
 
-        case "AccountRejected":
+        case "AccountReject":
             handleAccountReject(event);
             break;
 
@@ -123,7 +123,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
         logger.info("Sending registration email notification for user: {}", username);
         emailService.sendUserRegistrationEmail(emailModel, rmgEmail);
 
-        // saveNotification(userId, "UserRegistered", message);
+        saveNotification(userId, "UserRegistered", "Your account has been registered successfully.");
     }
     
     private void handleAccountApproved(BaseEvent event) {
@@ -154,7 +154,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
         logger.info("Sending account approval email notification for user: {}", username);
         emailService.sendAccountApproveEmail(approvedEmailModel, rmgEmail);
 
-        // saveNotification(userId, "AccountApproved", message);
+        saveNotification(userId, "AccountApproved", "Your account has been approved.");
     }
 
     
@@ -263,14 +263,16 @@ private NotificationTemplateRepository notificationTemplateRepository;
 
     private void saveNotification(String externalUserId, String type, String message) {
         Notification notification = new Notification();
-        notification.setExternalUserId("1"); // Hardcoded to "1"
+        notification.setExternalUserId(externalUserId);
         notification.setType(type);
         notification.setMessage(message);
-        notification.setCreatedAt(LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()));
         notification.setIsRead(false);
-
+        notification.setCreatedBy("SYSTEM");
+        notification.setUpdatedBy("SYSTEM");
+        
         Notification savedNotification = notificationRepository.save(notification);
-        logger.info("Notification saved to database for user: {} with ID: {}", externalUserId, savedNotification.getNotificationId());
+        logger.info("Notification saved to database for user: {} with ID: {}", 
+                    externalUserId, savedNotification.getNotificationId());
     }
 
     private String getRequiredField(Map<String, Object> data, String fieldName) {

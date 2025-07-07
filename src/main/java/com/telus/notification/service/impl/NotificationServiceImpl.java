@@ -22,10 +22,10 @@ public class NotificationServiceImpl implements NotificationService {
         this.notificationEventProcessor = notificationEventProcessor;
     }
 
-    @Override
-    public List<Notification> getUnreadNotificationsByExternalUserId(String externalUserId) {
-        return notificationRepository.findByExternalUserIdAndIsReadFalse(externalUserId);
-    }
+@Override
+public List<Notification> getUnreadNotificationsByExternalUserId(String externalUserId) {
+    return notificationRepository.findByExternalUserIdAndIsReadFalse(externalUserId);
+}
 
     @Override
     public void markNotificationAsRead(Integer notificationId) {
