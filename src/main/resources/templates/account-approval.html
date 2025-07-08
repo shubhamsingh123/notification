@@ -362,6 +362,28 @@ p {
     .action-links a {
         margin: 0;
     }
+
+    .button-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-link:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.button-link:active {
+  background-color: #004085;
+  transform: translateY(0);
+}
+
 }
     </style>
 </head>
@@ -380,7 +402,10 @@ p {
             <h2>You account is approved. Please login to access TelusRecruitAI portal🚀</h2>
             <p>Please login</p>
             <p class="email" th:text="${userId}">user@example.com</p>
-            <button class="view-details">Log in to Your Account</button>
+            <!-- <button class="view-details"></button> -->
+            <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer" class="button-link">
+  Log in to Your Account
+            </a>
         
             
             <div class="social-disclaimer">

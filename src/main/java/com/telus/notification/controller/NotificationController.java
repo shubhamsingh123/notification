@@ -16,7 +16,9 @@ import java.util.Map;
 import java.time.Year;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 import com.telus.notification.model.UserRegistrationEmailModel;
+import java.time.Instant;
 
 @RestController
 @RequestMapping("/api/notifications")
@@ -43,9 +45,23 @@ public class NotificationController {
     public ResponseEntity<ApiResponse<String>> processNotification(@RequestBody BaseEvent event) {
         try {
             notificationEventProcessor.processEvent(event);
-            return ResponseEntity.ok(new ApiResponse<>(true, "Notification processed successfully", null));
+            return ResponseEntity.ok(new ApiResponse<>(
+                true,
+                "Notification processed successfully",
+                "Operation successful",
+                200,
+                null,
+                Instant.now().toEpochMilli()
+            ));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new ApiResponse<>(false, null, e.getMessage()));
+            return ResponseEntity.badRequest().body(new ApiResponse<>(
+                false,
+                null,
+                "Operation failed",
+                400,
+                e.getMessage(),
+                Instant.now().toEpochMilli()
+            ));
         }
     }
 
@@ -89,12 +105,45 @@ public class NotificationController {
     // }
 
     @GetMapping("/unread/{externalUserId}")
-    public ResponseEntity<ApiResponse<List<Notification>>> getUnreadNotifications(@PathVariable String externalUserId) {
+    public ResponseEntity<ApiResponse<Map<String, Object>>> getUnreadNotifications(@PathVariable String externalUserId) {
         try {
             List<Notification> unreadNotifications = notificationService.getUnreadNotificationsByExternalUserId(externalUserId);
-            return ResponseEntity.ok(new ApiResponse<>(true, unreadNotifications, null));
+            
+            List<Map<String, Object>> notificationList = unreadNotifications.stream()
+                .map(notification -> {
+                    Map<String, Object> notificationMap = new HashMap<>();
+                    notificationMap.put("id", notification.getNotificationId());
+                    notificationMap.put("message", notification.getType());
+                    notificationMap.put("created_at", notification.getCreatedAt());
+                    return notificationMap;
+                })
+                .collect(Collectors.toList());
+
+            Map<String, Object> responseData = new HashMap<>();
+            responseData.put("message", "Notification loaded successfully");
+            responseData.put("count", unreadNotifications.size());
+            responseData.put("notifications", notificationList);
+
+            ApiResponse<Map<String, Object>> apiResponse = new ApiResponse<>(
+                true,
+                responseData,
+                "Notification loaded successfully",
+                200,
+                null,
+                Instant.now().toEpochMilli()
+            );
+
+            return ResponseEntity.ok(apiResponse);
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(new ApiResponse<>(false, null, e.getMessage()));
+            ApiResponse<Map<String, Object>> errorResponse = new ApiResponse<>(
+                false,
+                null,
+                "Error loading notifications",
+                400,
+                e.getMessage(),
+                Instant.now().toEpochMilli()
+            );
+            return ResponseEntity.badRequest().body(errorResponse);
         }
     }
 
@@ -102,9 +151,23 @@ public class NotificationController {
     public ResponseEntity<ApiResponse<String>> markNotificationAsRead(@PathVariable Integer notificationId) {
         try {
             notificationService.markNotificationAsRead(notificationId);
-            return ResponseEntity.ok(new ApiResponse<>(true, "Notification marked as read successfully", null));
+            return ResponseEntity.ok(new ApiResponse<>(
+                true, 
+                "Notification marked as read successfully",
+                "Operation successful",
+                200,
+                null,
+                Instant.now().toEpochMilli()
+            ));
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(new ApiResponse<>(false, null, e.getMessage()));
+            return ResponseEntity.badRequest().body(new ApiResponse<>(
+                false,
+                null,
+                "Operation failed",
+                400,
+                e.getMessage(),
+                Instant.now().toEpochMilli()
+            ));
         }
     }
 }

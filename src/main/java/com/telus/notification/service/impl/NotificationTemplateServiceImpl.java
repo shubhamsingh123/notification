@@ -90,6 +90,12 @@ public class NotificationTemplateServiceImpl implements NotificationTemplateServ
                 logTemplateDetails(template);
             } else {
                 logger.warn("No template found for event type: {}", eventType);
+                // Add debug logging to check all templates
+                List<NotificationTemplate> allTemplates = notificationTemplateRepository.findAll();
+                logger.debug("All templates in the database:");
+                for (NotificationTemplate t : allTemplates) {
+                    logger.debug("Template ID: {}, Event Type: {}", t.getTemplateId(), t.getEventType());
+                }
             }
             return template;
         } catch (Exception e) {
