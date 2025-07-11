@@ -104,7 +104,7 @@ public class NotificationController {
     //     }
     // }
 
-    @GetMapping("/unread/{externalUserId}")
+        @GetMapping("/unread/{externalUserId}")
     public ResponseEntity<ApiResponse<Map<String, Object>>> getUnreadNotifications(@PathVariable String externalUserId) {
         try {
             List<Notification> unreadNotifications = notificationService.getUnreadNotificationsByExternalUserId(externalUserId);
@@ -115,6 +115,7 @@ public class NotificationController {
                     notificationMap.put("id", notification.getNotificationId());
                     notificationMap.put("message", notification.getType());
                     notificationMap.put("created_at", notification.getCreatedAt());
+                    notificationMap.put("is_read", notification.isRead());
                     return notificationMap;
                 })
                 .collect(Collectors.toList());
@@ -147,6 +148,7 @@ public class NotificationController {
         }
     }
 
+
     @PutMapping("/{notificationId}/mark-as-read")
     public ResponseEntity<ApiResponse<String>> markNotificationAsRead(@PathVariable Integer notificationId) {
         try {
@@ -167,6 +169,7 @@ public class NotificationController {
                 400,
                 e.getMessage(),
                 Instant.now().toEpochMilli()
+                
             ));
         }
     }
