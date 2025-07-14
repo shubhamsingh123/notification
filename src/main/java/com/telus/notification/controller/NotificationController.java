@@ -104,16 +104,16 @@ public class NotificationController {
     //     }
     // }
 
-        @GetMapping("/unread/{externalUserId}")
-    public ResponseEntity<ApiResponse<Map<String, Object>>> getUnreadNotifications(@PathVariable String externalUserId) {
+    @GetMapping("/unread/{externalUserId}")
+    public ResponseEntity<ApiResponse<Map<String, Object>>> getNotifications(@PathVariable String externalUserId) {
         try {
-            List<Notification> unreadNotifications = notificationService.getUnreadNotificationsByExternalUserId(externalUserId);
+            List<Notification> notifications = notificationService.getNotificationsByExternalUserId(externalUserId);
             
-            List<Map<String, Object>> notificationList = unreadNotifications.stream()
+            List<Map<String, Object>> notificationList = notifications.stream()
                 .map(notification -> {
                     Map<String, Object> notificationMap = new HashMap<>();
                     notificationMap.put("id", notification.getNotificationId());
-                    notificationMap.put("message", notification.getType());
+                    notificationMap.put("message", notification.getMessage());
                     notificationMap.put("created_at", notification.getCreatedAt());
                     notificationMap.put("is_read", notification.getIsRead());
                     return notificationMap;
@@ -121,14 +121,14 @@ public class NotificationController {
                 .collect(Collectors.toList());
 
             Map<String, Object> responseData = new HashMap<>();
-            responseData.put("message", "Notification loaded successfully");
-            responseData.put("count", unreadNotifications.size());
+            responseData.put("message", "Notifications loaded successfully");
+            responseData.put("count", notifications.size());
             responseData.put("notifications", notificationList);
 
             ApiResponse<Map<String, Object>> apiResponse = new ApiResponse<>(
                 true,
                 responseData,
-                "Notification loaded successfully",
+                "Notifications loaded successfully",
                 200,
                 null,
                 Instant.now().toEpochMilli()

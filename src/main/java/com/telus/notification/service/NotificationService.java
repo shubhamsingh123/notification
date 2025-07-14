@@ -5,7 +5,7 @@ import com.telus.notification.model.BaseEvent;
 import java.util.List;
 
 public interface NotificationService {
-    List<Notification> getUnreadNotificationsByExternalUserId(String externalUserId);
+    List<Notification> getNotificationsByExternalUserId(String externalUserId);
     void markNotificationAsRead(Integer notificationId);
     void processNotification(BaseEvent event);
 }
