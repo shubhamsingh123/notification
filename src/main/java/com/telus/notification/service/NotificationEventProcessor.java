@@ -123,7 +123,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
         logger.info("Sending registration email notification for user: {}", username);
         emailService.sendUserRegistrationEmail(emailModel, rmgEmail);
 
-        saveNotification(userId, "UserRegistered", "Your account has been registered successfully.", true);
+        saveNotification(userId, "UserRegistered", "New user " + username + "'s account is registered.", true);
     }
     
     private void handleAccountApproved(BaseEvent event) {
@@ -154,7 +154,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
         logger.info("Sending account approval email notification for user: {}", username);
         emailService.sendAccountApproveEmail(approvedEmailModel, rmgEmail);
 
-        saveNotification(userId, "AccountApproved", "Your account has been approved.", false);
+        saveNotification(userId,"AccountApproved" , "Your manager account is approved by " + rmgEmail, false);
     }
 
     
@@ -167,8 +167,9 @@ private NotificationTemplateRepository notificationTemplateRepository;
         String email = getRequiredField(data, "email");
         String rmgEmail = getOptionalField(data, "rmgEmail", "shubham16cse06@gmail.com");
         String managerEmail = getOptionalField(data, "managerEmail", email); // Default to user's email if not provided
+        String rejectionReason = getOptionalField(data, "rejectionReason", "No reason provided");
 
-        logger.info("Extracted fields from event - username: {}, email: {}", username, email);
+        logger.info("Extracted fields from event - username: {}, email: {}, rejectionReason: {}", username, email, rejectionReason);
 
         Map<String, Object> variables = new HashMap<>();
         variables.put("userName", username);
@@ -186,7 +187,7 @@ private NotificationTemplateRepository notificationTemplateRepository;
         logger.info("Sending account rejection email notification for user: {}", username);
         emailService.sendAccountRejectionEmail(rejectedEmailModel, rmgEmail);
 
-        saveNotification(userId, "AccountReject", "Your account registration has been rejected.", false);
+        saveNotification(userId, "AccountReject", "Your account has been rejected by " + rmgEmail + ". Reason: " + rejectionReason, false);
     }
 
     

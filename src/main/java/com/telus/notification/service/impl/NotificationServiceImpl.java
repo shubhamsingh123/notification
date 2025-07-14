@@ -23,8 +23,8 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
 @Override
-public List<Notification> getUnreadNotificationsByExternalUserId(String externalUserId) {
-    return notificationRepository.findByExternalUserIdAndIsReadFalse(externalUserId);
+public List<Notification> getNotificationsByExternalUserId(String externalUserId) {
+    return notificationRepository.findByExternalUserId(externalUserId);
 }
 
     @Override
