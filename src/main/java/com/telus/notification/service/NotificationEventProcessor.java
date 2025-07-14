@@ -148,7 +148,8 @@ private NotificationTemplateRepository notificationTemplateRepository;
             username,
             email,
             managerEmail,
-            LocalDateTime.now()
+            LocalDateTime.now(),
+            null  // Passing null for rejectionReason as it's not applicable for approval
         );
         
         logger.info("Sending account approval email notification for user: {}", username);
@@ -181,7 +182,8 @@ private NotificationTemplateRepository notificationTemplateRepository;
             username,
             email,
             managerEmail,
-            LocalDateTime.now()
+            LocalDateTime.now(),
+            rejectionReason
         );
         
         logger.info("Sending account rejection email notification for user: {}", username);
