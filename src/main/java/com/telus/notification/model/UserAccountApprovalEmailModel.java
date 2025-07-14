@@ -9,15 +9,25 @@ public class UserAccountApprovalEmailModel {
     private String managerEmail;
     private LocalDateTime registrationDate;
     private String loginUrl;
+    private String rejectionReason;
 
     public UserAccountApprovalEmailModel() {
     }
 
-    public UserAccountApprovalEmailModel(String userName, String userEmail, String managerEmail, LocalDateTime registrationDate) {
+    public UserAccountApprovalEmailModel(String userName, String userEmail, String managerEmail, LocalDateTime registrationDate, String rejectionReason) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.managerEmail = managerEmail;
         this.registrationDate = registrationDate;
+        this.rejectionReason = rejectionReason;
+    }
+
+    public String getRejectionReason() {
+        return rejectionReason;
+    }
+
+    public void setRejectionReason(String rejectionReason) {
+        this.rejectionReason = rejectionReason;
     }
 
     public String getUserName() {

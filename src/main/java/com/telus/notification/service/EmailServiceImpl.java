@@ -150,6 +150,7 @@ public class EmailServiceImpl implements EmailService {
             variables.put("userId", model.getUserEmail());
             variables.put("registrationDate", model.getRegistrationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             variables.put("currentYear", java.time.Year.now().getValue());
+            variables.put("rejectionReason", model.getRejectionReason());
 
             // Process template with variables
             String htmlContent = notificationTemplates.getAccountRejectionTemplate(variables);
