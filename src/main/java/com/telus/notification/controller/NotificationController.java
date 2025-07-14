@@ -115,7 +115,7 @@ public class NotificationController {
                     notificationMap.put("id", notification.getNotificationId());
                     notificationMap.put("message", notification.getType());
                     notificationMap.put("created_at", notification.getCreatedAt());
-                    notificationMap.put("is_read", notification.isRead());
+                    notificationMap.put("is_read", notification.getIsRead());
                     return notificationMap;
                 })
                 .collect(Collectors.toList());
