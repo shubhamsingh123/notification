@@ -2,7 +2,7 @@
 
 # Set variables
 PROJECT_ID="telusrecruitai"
-REGION="us-central1"  # Default region, can be changed
+REGION="asia-south1"  # Default region, can be changed
 IMAGE_NAME="notification-service"
 SERVICE_NAME="notification-service"
 
