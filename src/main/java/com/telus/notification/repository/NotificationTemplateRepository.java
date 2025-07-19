@@ -13,6 +13,6 @@ public interface NotificationTemplateRepository extends JpaRepository<Notificati
      * @param eventType the type of event
      * @return the template for the given event type, or null if not found
      */
-    @Query(value = "SELECT * FROM notification_templates WHERE event_type = :eventType", nativeQuery = true)
+    @Query(value = "SELECT * FROM notification_templates WHERE event_type = :eventType LIMIT 1", nativeQuery = true)
     NotificationTemplate findByEventType(@Param("eventType") String eventType);
 }
