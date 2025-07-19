@@ -24,10 +24,10 @@ public class NotificationEventProcessorTest {
 
     @BeforeEach
     public void setup() {
-        // Create and save a test template
+        // Create and save a test template with a unique name
         NotificationTemplate template = new NotificationTemplate();
         template.setEventType("UserRegistered");
-        template.setName("User Registration Template");
+        template.setName("User Registration Template " + System.currentTimeMillis());
         template.setBodyTemplate("Welcome ${userName}! Your account has been created.");
         template.setSubjectTmp("Welcome to TELUS");
         template.setCreatedAt(LocalDateTime.now());

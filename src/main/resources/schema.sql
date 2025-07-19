@@ -1,9 +1,9 @@
 CREATE TABLE IF NOT EXISTS notification_templates (
-    template_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    template_id SERIAL PRIMARY KEY,
     event_type VARCHAR(50) NOT NULL,
     name VARCHAR(100) NOT NULL UNIQUE,
     subject_tmp VARCHAR(200) NOT NULL,
-    body_template CLOB NOT NULL,
+    body_template TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL,
     created_by VARCHAR(50),
     updated_at TIMESTAMP NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS notification_templates (
 CREATE INDEX IF NOT EXISTS idx_notification_templates_event_type ON notification_templates(event_type);
 
 CREATE TABLE IF NOT EXISTS notifications (
-    notification_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    notification_id SERIAL PRIMARY KEY,
     external_user_id VARCHAR(255) NOT NULL,
     message TEXT NOT NULL,
     type VARCHAR(255) NOT NULL,
