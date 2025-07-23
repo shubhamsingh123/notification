@@ -301,16 +301,18 @@ private PdfGenerator pdfGenerator;
         String managerEmail = getRequiredField(data, "managerEmail");
         String position = getRequiredField(data, "position");
         List<String> questions = getRequiredListField(data, "questions");
+        LocalDateTime interviewDate = getLocalDateTimeField(data, "interviewDate");
+        String interviewMode = getOptionalField(data, "interviewMode", "Online (MS Teams)");
 
-        logger.info("Extracted fields from event - candidateName: {}, position: {}, managerEmail: {}", 
-            candidateName, position, managerEmail);
+        logger.info("Extracted fields from event - candidateName: {}, position: {}, managerEmail: {}, interviewDate: {}, interviewMode: {}", 
+            candidateName, position, managerEmail, interviewDate, interviewMode);
 
         // Create email model
         InterviewQuestionsEmailModel emailModel = new InterviewQuestionsEmailModel(
             candidateName,
             managerEmail,
             position,
-            LocalDateTime.now(),
+            interviewDate,
             questions
         );
 
@@ -322,13 +324,15 @@ private PdfGenerator pdfGenerator;
             Map<String, Object> variables = new HashMap<>();
             variables.put("candidateName", candidateName);
             variables.put("position", position);
+            variables.put("interviewDate", interviewDate);
+            variables.put("interviewMode", interviewMode);
             variables.put("currentYear", Year.now().toString());
             
             String htmlContent = notificationTemplates.getInterviewQuestionsTemplate(variables);
 
             // Send email with PDF attachment
-            String subject = "Interview Questions for " + candidateName + " - " + position;
-            String pdfFileName = "Interview_Questions_" + candidateName.replaceAll("\\s+", "_") + ".pdf";
+            String subject = "New Interview Details & AI-Generated Questions – " + candidateName + ", " + position;
+            String pdfFileName = "Interview_Questions_" + candidateName.replaceAll("\\s+", "_") + "_" + position.replaceAll("\\s+", "_") + ".pdf";
             
             emailService.sendEmailWithPdfAttachment(
                 managerEmail,
@@ -383,5 +387,20 @@ private PdfGenerator pdfGenerator;
             throw new NotificationException("Field '" + fieldName + "' cannot be empty");
         }
         return stringValue;
+    }
+
+    private LocalDateTime getLocalDateTimeField(Map<String, Object> data, String fieldName) {
+        Object value = data.get(fieldName);
+        if (value == null) {
+            throw new NotificationException("Required field '" + fieldName + "' is missing from event data");
+        }
+        if (value instanceof String) {
+            try {
+                return LocalDateTime.parse((String) value);
+            } catch (Exception e) {
+                throw new NotificationException("Field '" + fieldName + "' must be a valid LocalDateTime string");
+            }
+        }
+        throw new NotificationException("Field '" + fieldName + "' must be a LocalDateTime string");
     }
 }

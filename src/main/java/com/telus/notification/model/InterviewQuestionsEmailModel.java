@@ -9,6 +9,7 @@ public class InterviewQuestionsEmailModel {
     private String position;
     private LocalDateTime interviewDate;
     private List<String> questions;
+    private String interviewMode;
 
     public InterviewQuestionsEmailModel(String candidateName, String managerEmail, String position, 
                                       LocalDateTime interviewDate, List<String> questions) {
@@ -17,6 +18,17 @@ public class InterviewQuestionsEmailModel {
         this.position = position;
         this.interviewDate = interviewDate;
         this.questions = questions;
+        this.interviewMode = "Online (MS Teams)"; // Default value
+    }
+
+    public InterviewQuestionsEmailModel(String candidateName, String managerEmail, String position, 
+                                      LocalDateTime interviewDate, List<String> questions, String interviewMode) {
+        this.candidateName = candidateName;
+        this.managerEmail = managerEmail;
+        this.position = position;
+        this.interviewDate = interviewDate;
+        this.questions = questions;
+        this.interviewMode = interviewMode;
     }
 
     public String getCandidateName() {
@@ -57,5 +69,13 @@ public class InterviewQuestionsEmailModel {
 
     public void setQuestions(List<String> questions) {
         this.questions = questions;
+    }
+
+    public String getInterviewMode() {
+        return interviewMode;
+    }
+
+    public void setInterviewMode(String interviewMode) {
+        this.interviewMode = interviewMode;
     }
 }
