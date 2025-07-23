@@ -22,6 +22,11 @@ import java.time.ZoneId;
 import java.util.Map;
 import java.util.UUID;
 import java.util.HashMap;
+import java.util.List;
+
+import com.itextpdf.text.DocumentException;
+import com.telus.notification.model.InterviewQuestionsEmailModel;
+import com.telus.notification.util.PdfGenerator;
 
 @Service
 public class NotificationEventProcessor {
@@ -43,6 +48,12 @@ private ObjectMapper objectMapper;
 
 @Autowired
 private NotificationTemplateRepository notificationTemplateRepository;
+
+@Autowired
+private NotificationTemplates notificationTemplates;
+
+@Autowired
+private PdfGenerator pdfGenerator;
 
     public void processEvent(BaseEvent event) {
         logger.info("Entering processEvent method");
@@ -73,6 +84,10 @@ private NotificationTemplateRepository notificationTemplateRepository;
 
         case "AccountRejected":
             handleAccountReject(event);
+            break;
+
+        case "InterviewQuestions":
+            handleInterviewQuestionsEvent(event);
             break;
 
         default:
@@ -276,6 +291,83 @@ private NotificationTemplateRepository notificationTemplateRepository;
         Notification savedNotification = notificationRepository.save(notification);
         logger.info("Notification saved to database for user: {} with ID: {}", 
                     notification.getExternalUserId(), savedNotification.getNotificationId());
+    }
+
+    private void handleInterviewQuestionsEvent(BaseEvent event) {
+        var data = event.getData();
+        logger.info("Processing InterviewQuestions event with data: {}", data);
+        
+        String candidateName = getRequiredField(data, "candidateName");
+        String managerEmail = getRequiredField(data, "managerEmail");
+        String position = getRequiredField(data, "position");
+        List<String> questions = getRequiredListField(data, "questions");
+
+        logger.info("Extracted fields from event - candidateName: {}, position: {}, managerEmail: {}", 
+            candidateName, position, managerEmail);
+
+        // Create email model
+        InterviewQuestionsEmailModel emailModel = new InterviewQuestionsEmailModel(
+            candidateName,
+            managerEmail,
+            position,
+            LocalDateTime.now(),
+            questions
+        );
+
+        try {
+            // Generate PDF
+            byte[] pdfContent = pdfGenerator.generateInterviewQuestionsPdf(emailModel);
+
+            // Prepare email content
+            Map<String, Object> variables = new HashMap<>();
+            variables.put("candidateName", candidateName);
+            variables.put("position", position);
+            variables.put("currentYear", Year.now().toString());
+            
+            String htmlContent = notificationTemplates.getInterviewQuestionsTemplate(variables);
+
+            // Send email with PDF attachment
+            String subject = "Interview Questions for " + candidateName + " - " + position;
+            String pdfFileName = "Interview_Questions_" + candidateName.replaceAll("\\s+", "_") + ".pdf";
+            
+            emailService.sendEmailWithPdfAttachment(
+                managerEmail,
+                subject,
+                htmlContent,
+                pdfContent,
+                pdfFileName
+            );
+
+            saveNotification(
+                managerEmail, 
+                "InterviewQuestions",
+                "Interview questions for candidate " + candidateName + " have been sent.",
+                false
+            );
+
+            logger.info("Interview questions email sent successfully to manager: {}", managerEmail);
+        } catch (DocumentException e) {
+            logger.error("Failed to generate PDF for candidate: {}", candidateName, e);
+            throw new NotificationException("Failed to generate PDF: " + e.getMessage());
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<String> getRequiredListField(Map<String, Object> data, String fieldName) {
+        Object value = data.get(fieldName);
+        if (value == null) {
+            throw new NotificationException("Required field '" + fieldName + "' is missing from event data");
+        }
+        if (!(value instanceof List)) {
+            throw new NotificationException("Field '" + fieldName + "' must be a list");
+        }
+        List<?> list = (List<?>) value;
+        if (list.isEmpty()) {
+            throw new NotificationException("Field '" + fieldName + "' cannot be empty");
+        }
+        return list.stream()
+            .map(Object::toString)
+            .collect(java.util.stream.Collectors.toList());
     }
 
     private String getRequiredField(Map<String, Object> data, String fieldName) {

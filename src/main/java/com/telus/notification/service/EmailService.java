@@ -36,4 +36,14 @@ public interface EmailService {
      * @param htmlContent email content in HTML format
      */
     void sendHtmlEmail(String to, String subject, String htmlContent);
+
+    /**
+     * Sends an email with a PDF attachment.
+     * @param to recipient email address
+     * @param subject email subject
+     * @param htmlContent email content in HTML format
+     * @param pdfContent byte array of the PDF content
+     * @param pdfFileName name of the PDF file
+     */
+    void sendEmailWithPdfAttachment(String to, String subject, String htmlContent, byte[] pdfContent, String pdfFileName);
 }

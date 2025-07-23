@@ -1,0 +1,13 @@
+{
+  "eventType": "InterviewQuestions",
+  "data": {
+    "candidateName": "John Doe",
+    "managerEmail": "shubham16cse06@gmail.com",
+    "position": "Software Engineer",
+    "questions": [
+      "What is your experience with Java?",
+      "Describe a challenging project you worked on",
+      "How do you handle tight deadlines?"
+    ]
+  }
+}

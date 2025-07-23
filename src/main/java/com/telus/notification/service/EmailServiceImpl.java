@@ -163,4 +163,44 @@ public class EmailServiceImpl implements EmailService {
             throw new RuntimeException("Failed to send rejection email", e);
         }
     }
+
+    @Override
+    public void sendEmailWithPdfAttachment(String to, String subject, String htmlContent, byte[] pdfContent, String pdfFileName) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setFrom("noreply@telus.com");
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(htmlContent, true);
+            helper.addAttachment(pdfFileName, new jakarta.activation.DataSource() {
+                @Override
+                public java.io.InputStream getInputStream() {
+                    return new java.io.ByteArrayInputStream(pdfContent);
+                }
+
+                @Override
+                public java.io.OutputStream getOutputStream() {
+                    throw new UnsupportedOperationException("Read-only data");
+                }
+
+                @Override
+                public String getContentType() {
+                    return "application/pdf";
+                }
+
+                @Override
+                public String getName() {
+                    return pdfFileName;
+                }
+            });
+
+            mailSender.send(message);
+            logger.info("Email with PDF attachment sent to: {}", to);
+        } catch (MessagingException e) {
+            logger.error("Failed to send email with PDF attachment to: {}", to, e);
+            throw new RuntimeException("Failed to send email with PDF attachment", e);
+        }
+    }
 }
