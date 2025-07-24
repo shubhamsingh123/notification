@@ -8,28 +8,28 @@ public class InterviewQuestionsEmailModel {
 private List<String> managerEmails;
     private String position;
     private LocalDateTime interviewDate;
-    private List<String> questions;
+    private String questions;
     private String interviewMode;
 
-    public InterviewQuestionsEmailModel(String candidateName, List<String> managerEmails, String position, 
-                                      LocalDateTime interviewDate, List<String> questions) {
-        this.candidateName = candidateName;
-        this.managerEmails = managerEmails;
-        this.position = position;
-        this.interviewDate = interviewDate;
-        this.questions = questions;
-        this.interviewMode = "Online (MS Teams)"; // Default value
-    }
+    public InterviewQuestionsEmailModel(String candidateName, List<String> managerEmails, String position,
+                                    LocalDateTime interviewDate, String questions) {
+    this.candidateName = candidateName;
+    this.managerEmails = managerEmails;
+    this.position = position;
+    this.interviewDate = interviewDate;
+    this.questions = questions;
+    this.interviewMode = "Online (MS Teams)";
+}
 
-    public InterviewQuestionsEmailModel(String candidateName, List<String> managerEmails, String position, 
-                                      LocalDateTime interviewDate, List<String> questions, String interviewMode) {
-        this.candidateName = candidateName;
-        this.managerEmails = managerEmails;
-        this.position = position;
-        this.interviewDate = interviewDate;
-        this.questions = questions;
-        this.interviewMode = interviewMode;
-    }
+public InterviewQuestionsEmailModel(String candidateName, List<String> managerEmails, String position,
+                                    LocalDateTime interviewDate, String questions, String interviewMode) {
+    this.candidateName = candidateName;
+    this.managerEmails = managerEmails;
+    this.position = position;
+    this.interviewDate = interviewDate;
+    this.questions = questions;
+    this.interviewMode = interviewMode;
+}
 
     public String getCandidateName() {
         return candidateName;
@@ -63,13 +63,15 @@ private List<String> managerEmails;
         this.interviewDate = interviewDate;
     }
 
-    public List<String> getQuestions() {
-        return questions;
-    }
+    
 
-    public void setQuestions(List<String> questions) {
-        this.questions = questions;
-    }
+public String getQuestions() {
+    return questions;
+}
+
+public void setQuestions(String questions) {
+    this.questions = questions;
+}
 
     public String getInterviewMode() {
         return interviewMode;

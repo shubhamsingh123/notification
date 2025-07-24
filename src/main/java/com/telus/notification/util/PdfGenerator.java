@@ -52,32 +52,30 @@ public class PdfGenerator {
             addCandidateInfo(document, model);
 
             // Process all questions
-            for (int i = 0; i < model.getQuestions().size(); i++) {
-                String questionText = model.getQuestions().get(i);
-                String[] sections = questionText.split("\n## ");
+            String questionsText = model.getQuestions();
+            String[] sections = questionsText.split("\n## ");
+            
+            // Process each section
+            for (int j = 0; j < sections.length; j++) {
+                String section = sections[j];
+                if (j == 0 && !section.startsWith("##")) {
+                    // If the first section doesn't start with ##, treat it as a question without a section
+                    addFormattedQuestion(document, j + 1, section);
+                    continue;
+                }
                 
-                // Process each section
-                for (int j = 0; j < sections.length; j++) {
-                    String section = sections[j];
-                    if (j == 0 && !section.startsWith("##")) {
-                        // If the first section doesn't start with ##, treat it as a question without a section
-                        addFormattedQuestion(document, i + 1, section);
-                        continue;
-                    }
-                    
-                    // Add section title
-                    String sectionTitle = section.substring(0, section.indexOf("\n"));
-                    Paragraph sectionPara = new Paragraph(sectionTitle, SECTION_FONT);
-                    sectionPara.setSpacingBefore(20);
-                    sectionPara.setSpacingAfter(15);
-                    document.add(sectionPara);
+                // Add section title
+                String sectionTitle = section.substring(0, section.indexOf("\n"));
+                Paragraph sectionPara = new Paragraph(sectionTitle, SECTION_FONT);
+                sectionPara.setSpacingBefore(20);
+                sectionPara.setSpacingAfter(15);
+                document.add(sectionPara);
 
-                    // Process questions in this section
-                    String[] questions = section.split("\n### ");
-                    for (int k = 1; k < questions.length; k++) {
-                        String question = questions[k];
-                        addFormattedQuestion(document, i + 1, question);
-                    }
+                // Process questions in this section
+                String[] sectionQuestions = section.split("\n### ");
+                for (int k = 1; k < sectionQuestions.length; k++) {
+                    String question = sectionQuestions[k];
+                    addFormattedQuestion(document, k, question);
                 }
             }
 

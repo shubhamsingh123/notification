@@ -300,7 +300,7 @@ private PdfGenerator pdfGenerator;
         String candidateName = getRequiredField(data, "candidateName");
         List<String> managerEmails = getRequiredListField(data, "managerEmails");
         String position = getRequiredField(data, "position");
-        List<String> questions = getRequiredListField(data, "questions");
+        String questions = getRequiredField(data, "questions");
         LocalDateTime interviewDate = getLocalDateTimeField(data, "interviewDate");
         String interviewMode = getOptionalField(data, "interviewMode", "Online (MS Teams)");
 
@@ -309,12 +309,12 @@ private PdfGenerator pdfGenerator;
 
         // Create email model
         InterviewQuestionsEmailModel emailModel = new InterviewQuestionsEmailModel(
-            candidateName,
-            managerEmails,
-            position,
-            interviewDate,
-            questions
-        );
+    candidateName,
+    managerEmails,
+    position,
+    interviewDate,
+    questions
+);
 
         try {
             // Generate PDF
