@@ -5,26 +5,26 @@ import java.util.List;
 
 public class InterviewQuestionsEmailModel {
     private String candidateName;
-    private String managerEmail;
+private List<String> managerEmails;
     private String position;
     private LocalDateTime interviewDate;
     private List<String> questions;
     private String interviewMode;
 
-    public InterviewQuestionsEmailModel(String candidateName, String managerEmail, String position, 
+    public InterviewQuestionsEmailModel(String candidateName, List<String> managerEmails, String position, 
                                       LocalDateTime interviewDate, List<String> questions) {
         this.candidateName = candidateName;
-        this.managerEmail = managerEmail;
+        this.managerEmails = managerEmails;
         this.position = position;
         this.interviewDate = interviewDate;
         this.questions = questions;
         this.interviewMode = "Online (MS Teams)"; // Default value
     }
 
-    public InterviewQuestionsEmailModel(String candidateName, String managerEmail, String position, 
+    public InterviewQuestionsEmailModel(String candidateName, List<String> managerEmails, String position, 
                                       LocalDateTime interviewDate, List<String> questions, String interviewMode) {
         this.candidateName = candidateName;
-        this.managerEmail = managerEmail;
+        this.managerEmails = managerEmails;
         this.position = position;
         this.interviewDate = interviewDate;
         this.questions = questions;
@@ -39,12 +39,12 @@ public class InterviewQuestionsEmailModel {
         this.candidateName = candidateName;
     }
 
-    public String getManagerEmail() {
-        return managerEmail;
+    public List<String> getManagerEmails() {
+        return managerEmails;
     }
 
-    public void setManagerEmail(String managerEmail) {
-        this.managerEmail = managerEmail;
+    public void setManagerEmails(List<String> managerEmails) {
+        this.managerEmails = managerEmails;
     }
 
     public String getPosition() {

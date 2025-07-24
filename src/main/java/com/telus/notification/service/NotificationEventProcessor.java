@@ -298,19 +298,19 @@ private PdfGenerator pdfGenerator;
         logger.info("Processing InterviewQuestions event with data: {}", data);
         
         String candidateName = getRequiredField(data, "candidateName");
-        String managerEmail = getRequiredField(data, "managerEmail");
+        List<String> managerEmails = getRequiredListField(data, "managerEmails");
         String position = getRequiredField(data, "position");
         List<String> questions = getRequiredListField(data, "questions");
         LocalDateTime interviewDate = getLocalDateTimeField(data, "interviewDate");
         String interviewMode = getOptionalField(data, "interviewMode", "Online (MS Teams)");
 
-        logger.info("Extracted fields from event - candidateName: {}, position: {}, managerEmail: {}, interviewDate: {}, interviewMode: {}", 
-            candidateName, position, managerEmail, interviewDate, interviewMode);
+        logger.info("Extracted fields from event - candidateName: {}, position: {}, managerEmails: {}, interviewDate: {}, interviewMode: {}", 
+            candidateName, position, managerEmails, interviewDate, interviewMode);
 
         // Create email model
         InterviewQuestionsEmailModel emailModel = new InterviewQuestionsEmailModel(
             candidateName,
-            managerEmail,
+            managerEmails,
             position,
             interviewDate,
             questions
@@ -334,22 +334,25 @@ private PdfGenerator pdfGenerator;
             String subject = "New Interview Details & AI-Generated Questions – " + candidateName + ", " + position;
             String pdfFileName = "Interview_Questions_" + candidateName.replaceAll("\\s+", "_") + "_" + position.replaceAll("\\s+", "_") + ".pdf";
             
-            emailService.sendEmailWithPdfAttachment(
-                managerEmail,
-                subject,
-                htmlContent,
-                pdfContent,
-                pdfFileName
-            );
+            // Send email to each manager
+            for (String managerEmail : managerEmails) {
+                emailService.sendEmailWithPdfAttachment(
+                    managerEmail,
+                    subject,
+                    htmlContent,
+                    pdfContent,
+                    pdfFileName
+                );
 
-            saveNotification(
-                managerEmail, 
-                "InterviewQuestions",
-                "Interview questions for candidate " + candidateName + " have been sent.",
-                false
-            );
+                saveNotification(
+                    managerEmail, 
+                    "InterviewQuestions",
+                    "Interview questions for candidate " + candidateName + " have been sent.",
+                    false
+                );
 
-            logger.info("Interview questions email sent successfully to manager: {}", managerEmail);
+                logger.info("Interview questions email sent successfully to manager: {}", managerEmail);
+            }
         } catch (DocumentException e) {
             logger.error("Failed to generate PDF for candidate: {}", candidateName, e);
             throw new NotificationException("Failed to generate PDF: " + e.getMessage());

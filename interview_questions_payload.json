@@ -3,7 +3,7 @@
   "data": {
     "panelMember": "Dummy",
     "candidateName": "John Doe",
-    "managerEmail": "shubham16cse06@gmail.com",
+    "managerEmails": ["shubham16cse06@gmail.com"],
     "position": "Software Engineer",
     "interviewDate": "2025-07-25T10:00:00",
     "questions": [
