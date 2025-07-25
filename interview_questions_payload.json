@@ -1,0 +1,15 @@
+{
+  "eventType": "InterviewQuestions",
+  "data": {
+    "panelMember": "Dummy",
+    "candidateName": "John Doe",
+    "managerEmails": ["shubham16cse06@gmail.com"],
+    "position": "Software Engineer",
+    "interviewDate": "2025-07-25T10:00:00",
+    "questions": [
+      "## Technical Skills\n### What is your experience with Java?\n**Look for:** Knowledge of core Java concepts, experience with frameworks like Spring, understanding of JVM.\n**Follow-up:** Can you describe a complex Java project you've worked on?",
+      "## Problem Solving\n### Describe a challenging project you worked on\n**Look for:** Clear explanation of the problem, approach to solving it, and the outcome.\n**Follow-up:** What would you do differently if you had to do the project again?",
+      "## Time Management\n### How do you handle tight deadlines?\n**Look for:** Prioritization skills, ability to communicate with stakeholders, stress management techniques.\n**Follow-up:** Can you give an example of a time when you missed a deadline? How did you handle it?"
+    ]
+  }
+}

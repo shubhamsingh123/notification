@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        header {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo {
+            height: 30px;
+            width: auto;
+        }
+        .content {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .details {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .attachment-info {
+            font-style: italic;
+            color: #666;
+        }
+        .social-disclaimer {
+            margin-top: 40px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .social-links {
+            margin-bottom: 20px;
+        }
+        .social-icon {
+            display: inline-block;
+            margin: 0 15px;
+        }
+        .disclaimer {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <div class="header-content">
+                <img src="https://storage.googleapis.com/telus_recruit_ai/Telus_logo_logotype.png" alt="Telus" class="logo">
+            </div>
+        </header>
+        <div class="content">
+            <p>Dear Panelist,</p>
+            
+            <p>This is a quick note to share the AI-generated interview questions prepared for the upcoming <span th:text="${position}">Position Title</span> interview with <span th:text="${candidateName}">Candidate Name</span>, scheduled on:</p>
+            
+            <div class="details">
+                <p>🗓️ Date: <span th:text="${#temporals.format(interviewDate, 'EEEE, MMMM dd, yyyy')}">Day, Month dd, yyyy</span></p>
+                <p>⏰ Time: <span th:text="${#temporals.format(interviewDate, 'HH:mm')}">Start Time</span> IST</p>
+                <p>📍 Mode: Online (Google meet)</p>
+            </div>
+
+            <p class="attachment-info">📎 Attached: "Interview Questions – <span th:text="${candidateName}">Candidate Name</span> / <span th:text="${position}">Position Title</span>.pdf"</p>
+
+            <p>These questions are intended to guide the conversation and ensure consistency across the panel. Feel free to refer to them during the session.</p>
+            
+            <div class="social-disclaimer">
+                <div class="social-links">
+                    <a href="#" class="social-icon"><img src="https://storage.googleapis.com/telus_recruit_ai/facebook.png" alt="Facebook" width="40" height="40"></a>
+                    <a href="#" class="social-icon"><img src="https://storage.googleapis.com/telus_recruit_ai/link.jpg" alt="LinkedIn" width="40" height="40"></a>
+                    <a href="#" class="social-icon"><img src="https://storage.googleapis.com/telus_recruit_ai/insta.png" alt="Instagram" width="40" height="40"></a>
+                </div>
+                <div class="disclaimer">
+                    <p>This is a system-generated email from TELUS. Please do not reply to this message.</p>
+                    <p>For any questions or concerns, please contact our Support Team.</p>
+                    <p>&copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2025</span> TELUS. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

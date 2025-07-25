@@ -31,4 +31,11 @@ public class NotificationTemplates {
         
         return templateEngine.process("account-rejected", context);
     }
+
+    public String getInterviewQuestionsTemplate(Map<String, Object> templateVariables) {
+        Context context = new Context();
+        templateVariables.forEach(context::setVariable);
+        
+        return templateEngine.process("interview-questions", context);
+    }
 }
