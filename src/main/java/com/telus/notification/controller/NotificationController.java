@@ -39,6 +39,7 @@ public class NotificationController {
         this.notificationEventProcessor = notificationEventProcessor;
         this.emailService = emailService;
         this.notificationTemplates = notificationTemplates;
+        
     }
 
     @PostMapping("/process")
