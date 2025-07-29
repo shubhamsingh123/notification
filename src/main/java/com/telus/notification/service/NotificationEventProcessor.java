@@ -173,6 +173,7 @@ private PdfGenerator pdfGenerator;
         saveNotification(userId,"AccountApproved" , "Your manager account is approved by " + rmgEmail, false);
     }
 
+
     
     private void handleAccountReject(BaseEvent event) {
         var data = event.getData();
@@ -182,7 +183,7 @@ private PdfGenerator pdfGenerator;
         String username = getRequiredField(data, "username");
         String email = getRequiredField(data, "email");
         String rmgEmail = getOptionalField(data, "rmgEmail", "shubham16cse06@gmail.com");
-        String managerEmail = getOptionalField(data, "managerEmail", email); // Default to user's email if not provided
+        String managerEmail = getOptionalField(data, "managerEmail", email); // Default    to user's email if not provided
         String rejectionReason = getOptionalField(data, "rejectionReason", "No reason provided");
 
         logger.info("Extracted fields from event - username: {}, email: {}, rejectionReason: {}", username, email, rejectionReason);
